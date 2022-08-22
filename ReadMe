@@ -1,0 +1,17 @@
+ROOT ARGON LIBRARY VALIDATION TOOL
+DEVELOPED ON THE BEHALF OF UTA NEUTRINO PHYSICS DEPARTMENT
+
+Summary:
+	Created to compute and verify the integrety of various datapoints after certain processing benchmarks. 
+	Operates on a .root file which is assumed to be in the same directory. 
+	When using, ensure any file pathing is updated to reflect current .root data structure. 
+
+
+Developed by Declan Quinn, Leo Aliaga, and Raquel Fernandez
+
+Direct comments and questions to Declan.quinn@mavs.uta.edu
+
+	Changelog:
+
+Version 0.0.1
+--created. Current functionality includes reading a specific .root library and creating a stacked histogram for CC-NuMu in order to see the neutrino energy per creation method ('channel').
