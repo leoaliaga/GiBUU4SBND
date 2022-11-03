@@ -180,10 +180,15 @@ void libValMCMethod::Loop()
 	//main logic loop
 	int muonFound;
 	std::cout<<"Starting Data Analysis and sort..."<<std::endl;
-	nentries = 10000;
+	
 
 	for (Long64_t jentry=0; jentry<nentries;jentry++) 
 	{
+
+		if(jentry % 1000000 == 0)
+		{
+			std::cout<<"Processing Entry Number "<<jentry<<std::endl;
+		}
 		Long64_t ientry = LoadTree(jentry);
 		if (ientry < 0) break; 
 		nb = fChain->GetEntry(jentry);   
@@ -409,7 +414,7 @@ void libValMCMethod::Loop()
 	//linking these filled histograms into a single stacked histogram
 
 	//Enu stacking
-	
+	TCanvas *Canvas_Enu = new TCanvas("Canvas_Enu");
 	THStack *Stack_Enu = new THStack("Stack_Enu","All (read: numu-cc atm) production methods Nuetrino Energies");
 	Stack_Enu->Add(DpDhQES_Enu);
 	Stack_Enu->Add(QES_Enu);
@@ -435,13 +440,18 @@ void libValMCMethod::Loop()
 	postProcEntries = postProcEntries + DIS_Enu->Integral();
 	postProcEntries = postProcEntries + DpDhDelta_Enu->Integral(); 
 
+
+	
 	std::cout<<"Total entries: "<<postProcEntries<<std::endl;
 	//Saving and cleaning up
+	
 	TFile blobE("histResultsE.root","RECREATE");
 	Stack_Enu->Write();
 	blobE.Close();
+	Canvas_Enu->SaveAs("histResultsE.png");
 
 	//Q stacking
+	TCanvas *Canvas_Q = new TCanvas("Canvas_Q");
 	THStack *Stack_Q = new THStack("Stack_Q","All (read: numu-cc atm) production methods 4-momentum transfer");
 	Stack_Q->Add(DpDhQES_Q);
 	Stack_Q->Add(QES_Q);
@@ -474,7 +484,11 @@ void libValMCMethod::Loop()
 	TFile blobQ("histResultsQ.root","RECREATE");
 	Stack_Q->Write();
 	blobQ.Close();
+	Canvas_Q->SaveAs("histResultsQ.png");
 	
+
+	//w
+	TCanvas *Canvas_w = new TCanvas("Canvas_w");
 	THStack *Stack_w = new THStack("Stack_w","All (read: numu-cc atm) production methods energy transfer");
 	Stack_w->Add(DpDhQES_w);
 	Stack_w->Add(QES_w);
@@ -505,6 +519,7 @@ void libValMCMethod::Loop()
 	TFile blobw("histResultsw.root","RECREATE");
 	Stack_w->Write();
 	blobw.Close();
+	Canvas_w->SaveAs("histResultsW.png");
 }
 
 
