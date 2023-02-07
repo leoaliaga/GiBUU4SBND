@@ -1,14 +1,12 @@
-//includes
-#define libValMCMethod_cxx
-#include "libValMCMethod.h"
-#include <cmath>
+#define GenieLibValMCMethod_cxx
+#include "GenieLibValMCMethod.h"
 #include <TH2.h>
 #include <TH1D.h>
 #include <TStyle.h>
 #include <THStack.h>
 #include <TCanvas.h>
 
-//global masses
+//Gobals
 
 double MUMASS = 0.10566;
 double CPIMASS = 0.13957;
@@ -18,14 +16,9 @@ double MUMASSSQR = MUMASS * MUMASS;
 
 //misc functions
 
-
-//4 momentum transfer
-double GetQ2(double enu, double emu, double pmuz)
+double Getw(double enu, double emu)
 {
-	double pmuL = pmuz;
-	double mom4 = 2*enu*(emu-pmuL);
-	mom4 = mom4 - MUMASSSQR; 
-	return mom4;
+	return enu-emu;
 }
 
 //alt calculation for 4 momentum transfer
@@ -37,11 +30,6 @@ double GetQ2Method2(double pX, double pY, double pZ, double muE, double incNuEne
 	double mom4;
 	mom4 = -q.Mag2();
 	return mom4;
-}
-
-double Getw(double enu, double emu)
-{
-	return enu-emu;
 }
 
 //invarient mass calculation 
@@ -62,37 +50,34 @@ double GetY(double w, double enu)
 	return (w/enu);
 }
 
-//driver function
-void libValMCMethod::Loop()
+void GenieLibValMCMethod::Loop()
 {
-	//default root instruction space
+//   In a ROOT session, you can do:
+//      root> .L GenieLibValMCMethod.C
+//      root> GenieLibValMCMethod t
+//      root> t.GetEntry(12); // Fill t data members with entry number 12
+//      root> t.Show();       // Show values of entry 12
+//      root> t.Show(16);     // Read and show values of entry 16
+//      root> t.Loop();       // Loop on all entries
+//
 
-	//   In a ROOT session, you can do:
-	//      root> .L libValMCMethod.C
-	//      root> libValMCMethod t
-	//      root> t.GetEntry(12); // Fill t data members with entry number 12
-	//      root> t.Show();       // Show values of entry 12
-	//      root> t.Show(16);     // Read and show values of entry 16
-	//      root> t.Loop();       // Loop on all entries
-	//
+//     This is the loop skeleton where:
+//    jentry is the global entry number in the chain
+//    ientry is the entry number in the current Tree
+//  Note that the argument to GetEntry must be:
+//    jentry for TChain::GetEntry
+//    ientry for TTree::GetEntry and TBranch::GetEntry
+//
+//       To read only selected branches, Insert statements like:
+// METHOD1:
+//    fChain->SetBranchStatus("*",0);  // disable all branches
+//    fChain->SetBranchStatus("branchname",1);  // activate branchname
+// METHOD2: replace line
+//    fChain->GetEntry(jentry);       //read all branches
+//by  b_branchname->GetEntry(ientry); //read only this branch
 
-	//     This is the loop skeleton where:
-	//    jentry is the global entry number in the chain
-	//    ientry is the entry number in the current Tree
-	//  Note that the argument to GetEntry must be:
-	//    jentry for TChain::GetEntry
-	//    ientry for TTree::GetEntry and TBranch::GetEntry
-	//
-	//       To read only selected branches, Insert statements like:
-	// METHOD1:
-	//    fChain->SetBranchStatus("*",0);  // disable all branches
-	//    fChain->SetBranchStatus("branchname",1);  // activate branchname
-	// METHOD2: replace line
-	//    fChain->GetEntry(jentry);       //read all branches
-	//by  b_branchname->GetEntry(ientry); //read only this branch
 
-	//Drawing estab. as per recommended style from Raquel
-
+//Drawing estab. as per recommended style from Raquel
 	gStyle->SetOptStat(0000);   
 	gStyle->SetOptFit(1111);   
 	gStyle->SetOptTitle(0);   
@@ -253,28 +238,27 @@ void libValMCMethod::Loop()
 	DpBg_Y->SetFillColor(kTeal);
 	otherOOB_Y->SetFillColor(kBlack);
 
-	if (fChain == 0) return; 
+	//actual logic
 
-	Long64_t nentries = fChain->GetEntriesFast();
+        if (fChain == 0) return;
+
+        Long64_t nentries = fChain->GetEntriesFast();
 
 	Long64_t nbytes = 0, nb = 0;
 
-	//main logic loop
 	int muonFound;
 	std::cout<<"Starting Data Analysis and sort..."<<std::endl;
-	
 
 	for (Long64_t jentry=0; jentry<nentries;jentry++) 
 	{
-
-		if(jentry % 1000000 == 0)
+		if(jentry % 10000 == 0)
 		{
 			std::cout<<"Processing Entry Number "<<jentry<<std::endl;
 		}
 		Long64_t ientry = LoadTree(jentry);
-		if (ientry < 0) break; 
-		nb = fChain->GetEntry(jentry);   
-		nbytes += nb;
+		if (ientry < 0) break;
+		nb = fChain->GetEntry(jentry);   nbytes += nb;
+		// if (Cut(ientry) < 0) continue;
 		muonFound = 0;
 		switch(prod_id)
 		{
@@ -284,7 +268,7 @@ void libValMCMethod::Loop()
 				{
 					if(prod_id == 1 && muonFound == 0 && pdg[i] == 13)
 					{
-						QES_Q->Fill(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),weight);
+						QES_Q->Fill(Qsq,weight);
 						QES_w->Fill(Getw(Enu,E[i]),weight);
 						QES_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						QES_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -299,7 +283,7 @@ void libValMCMethod::Loop()
 				{
 					if(prod_id>=2 && prod_id<=31 && pdg[i] == 13 && muonFound == 0)
 					{
-						NSBrRes_Q->Fill(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),weight);
+						NSBrRes_Q->Fill(Qsq,weight);
 						NSBrRes_w->Fill(Getw(Enu,E[i]),weight);
 						NSBrRes_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						NSBrRes_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -314,7 +298,7 @@ void libValMCMethod::Loop()
 				{
 					if(prod_id==32 && muonFound == 0 && pdg[i] == 13)
 					{
-						PiNBg_Q->Fill(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),weight);
+						PiNBg_Q->Fill(Qsq,weight);
 						PiNBg_w->Fill(Getw(Enu,E[i]),weight);
 						PiNBg_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						PiNBg_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -329,7 +313,7 @@ void libValMCMethod::Loop()
 				{
 					if(prod_id==33 && muonFound == 0 && pdg[i] == 13)
 					{
-						PiPBg_Q->Fill(GetQ2(Enu, E[i], pz[i]),weight);
+						PiPBg_Q->Fill(Qsq,weight);
 						PiPBg_w->Fill(Getw(Enu,E[i]),weight);
 						PiPBg_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						PiPBg_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -344,7 +328,7 @@ void libValMCMethod::Loop()
 				{
 					if(prod_id==34 && muonFound == 0 && pdg[i] == 13)
 					{
-						DIS_Q->Fill(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),weight);
+						DIS_Q->Fill(Qsq,weight);
 						DIS_w->Fill(Getw(Enu,E[i]),weight);
 						DIS_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						DIS_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -359,7 +343,7 @@ void libValMCMethod::Loop()
 				{
 					if(prod_id==35 && muonFound == 0 && pdg[i] == 13)
 					{
-						DpDhQES_Q->Fill(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),weight);
+						DpDhQES_Q->Fill(Qsq,weight);
 						DpDhQES_w->Fill(Getw(Enu,E[i]),weight);
 						DpDhQES_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						DpDhQES_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -374,7 +358,7 @@ void libValMCMethod::Loop()
 				{
 					if(prod_id==36 && muonFound == 0 && pdg[i] == 13)
 					{
-						DpDhDelta_Q->Fill(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),weight);
+						DpDhDelta_Q->Fill(Qsq,weight);
 						DpDhDelta_w->Fill(Getw(Enu,E[i]),weight);
 						DpDhDelta_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						DpDhDelta_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -389,7 +373,7 @@ void libValMCMethod::Loop()
 				{
 					if(prod_id==37 && muonFound == 0 && pdg[i] == 13)
 					{
-						DpBg_Q->Fill(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),weight);
+						DpBg_Q->Fill(Qsq,weight);
 						DpBg_w->Fill(Getw(Enu,E[i]),weight);
 						DpBg_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						DpBg_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -400,121 +384,6 @@ void libValMCMethod::Loop()
 			break;
 		}
 	}
-
-	//old format- holding JIC
-	/*for (Long64_t jentry=0; jentry<nentries;jentry++) 
-	{
-		Long64_t ientry = LoadTree(jentry);
-		if (ientry < 0) break; 
-		nb = fChain->GetEntry(jentry);   
-		nbytes += nb;
-		// if (Cut(ientry) < 0) continue;
-
-		//switch to proper histogram for storage (prod_id check) 
-		if(prod_id==1)
-		{
-			QES_Enu->Fill(Enu,weight);
-			for(int i = 0; i < nparts; i++)
-			{
-				if(pdg[i] == 13)
-				{
-					QES_Q->Fill(GetQ2(Enu, E[i], pz[i]),weight);
-				}
-			}	
-		}
-		if(prod_id>=2 && prod_id<=31)
-		{
-			NSBrRes_Enu->Fill(Enu,weight);
-			for(int i = 0; i < nparts; i++)
-			{
-				if(pdg[i] == 13)
-				{
-					NSBrRes_Q->Fill(GetQ2(Enu, E[i], pz[i]),weight);
-				}
-			}
-		}	
-		if(prod_id==32)
-		{
-			PiNBg_Enu->Fill(Enu,weight);
-			for(int i = 0; i < nparts; i++)
-			{
-				if(pdg[i] == 13)
-				{
-					PiNBg_Q->Fill(GetQ2(Enu, E[i], pz[i]),weight);
-				}
-			}
-		}	
-		if(prod_id==33)
-		{
-			PiPBg_Enu->Fill(Enu,weight);
-			for(int i = 0; i < nparts; i++)
-			{
-				if(pdg[i] == 13)
-				{
-					PiPBg_Q->Fill(GetQ2(Enu, E[i], pz[i]),weight);
-				}
-			}		
-		}
-		if(prod_id==34)
-		{
-			DIS_Enu->Fill(Enu,weight);
-			for(int i = 0; i < nparts; i++)
-			{
-				if(pdg[i] == 13)
-				{
-					DIS_Q->Fill(GetQ2(Enu, E[i], pz[i]),weight);
-				}
-			}		
-		}	
-		if(prod_id==35)
-		{
-			DpDhQES_Enu->Fill(Enu,weight);
-			for(int i = 0; i < nparts; i++)
-			{
-				if(pdg[i] == 13)
-				{
-					DpDhQES_Q->Fill(GetQ2(Enu, E[i], pz[i]),weight);
-				}
-			}
-		}	
-		if(prod_id==36)
-		{
-			DpDhDelta_Enu->Fill(Enu,weight);
-			for(int i = 0; i < nparts; i++)
-			{
-				if(pdg[i] == 13)
-				{
-					DpDhDelta_Q->Fill(GetQ2(Enu, E[i], pz[i]),weight);
-				}
-			}
-		}	
-		if(prod_id==37)
-		{
-			DpBg_Enu->Fill(Enu,weight);
-			for(int i = 0; i < nparts; i++)
-			{
-				if(pdg[i] == 13)
-				{
-					DpBg_Q->Fill(GetQ2(Enu, E[i], pz[i]),weight);
-				}
-			}		
-		}	
-		if(prod_id<1 || prod_id>37)
-		{
-			std::cout<<"Weird Prod ID found: "<<prod_id<<std::endl;
-			otherOOB_Enu->Fill(Enu,weight);
-			for(int i = 0; i < nparts; i++)
-			{
-				if(pdg[i] == 13)
-				{
-					otherOOB_Q->Fill(GetQ2(Enu, E[i], pz[i]),weight);
-				}
-			}
-			
-		}
-
-	}*/
-
 	std::cout<<"Still Alive! Linking histograms..."<<std::endl;
 
 	//linking these filled histograms into a single stacked histogram
@@ -533,7 +402,7 @@ void libValMCMethod::Loop()
 	Stack_Enu->Add(otherOOB_Enu);
 	Stack_Enu->Draw("hist");
 	Stack_Enu->GetXaxis()->SetTitle("Neutrino Energy (Enu)");
-	Stack_Enu->GetYaxis()->SetTitle("Cross section at this Energy");
+	Stack_Enu->GetYaxis()->SetTitle("Entries at this Energy");
 
 	TLegend *EnuLegend = new TLegend(0.5,0.7,0.9,0.9);
 	EnuLegend->AddEntry(DpDhQES_Enu,"DpDhQES","f");
@@ -561,7 +430,7 @@ void libValMCMethod::Loop()
 
 
 	
-	std::cout<<"Cross-section: "<<postProcEntries<<std::endl;
+	std::cout<<"Total entries: "<<postProcEntries<<std::endl;
 	//Saving and cleaning up
 	
 	TFile blobE("histResultsE.root","RECREATE");
@@ -583,7 +452,7 @@ void libValMCMethod::Loop()
 	Stack_Q->Add(otherOOB_Q);
 	Stack_Q->Draw("hist");
 	Stack_Q->GetXaxis()->SetTitle("4 momentum transfer (Q2)");
-	Stack_Q->GetYaxis()->SetTitle("Cross section at this Q2");
+	Stack_Q->GetYaxis()->SetTitle("Entries at this Q2");
 
 	TLegend *Q2Legend = new TLegend(0.5,0.7,0.9,0.9);
 	Q2Legend->AddEntry(DpDhQES_Q,"DpDhQES","f");
@@ -610,7 +479,7 @@ void libValMCMethod::Loop()
 	postProcEntries = postProcEntries + DIS_Q->Integral();
 	postProcEntries = postProcEntries + DpDhDelta_Q->Integral(); 
 
-	std::cout<<"Cross-section: "<<postProcEntries<<std::endl;
+	std::cout<<"Total entries: "<<postProcEntries<<std::endl;
 	//Saving and cleaning up
 	
 	TFile blobQ("histResultsQ.root","RECREATE");
@@ -633,19 +502,19 @@ void libValMCMethod::Loop()
 	Stack_w->Add(otherOOB_w);
 	Stack_w->Draw("hist");
 	Stack_w->GetXaxis()->SetTitle("Energy transfer (w)");
-	Stack_w->GetYaxis()->SetTitle("Cross section at this w");
+	Stack_w->GetYaxis()->SetTitle("Entries at this w");
 
-	TLegend *wLegend = new TLegend(0.5,0.7,0.9,0.9);
-	wLegend->AddEntry(DpDhQES_w,"DpDhQES","f");
-	wLegend->AddEntry(QES_w,"QES","f");
-	wLegend->AddEntry(NSBrRes_w,"NSBrRes","f");
-	wLegend->AddEntry(PiPBg_w,"PiPBg","f");
-	wLegend->AddEntry(PiNBg_w,"PiNBg","f");
-	wLegend->AddEntry(DpBg_w,"DpBg","f");
-	wLegend->AddEntry(DIS_w,"DIS","f");
-	wLegend->AddEntry(DpDhDelta_w,"DpDhDelta","f");
-	wLegend->AddEntry(otherOOB_w,"otherOOB","f");
-	wLegend->Draw();
+	TLegend *WLegend = new TLegend(0.5,0.7,0.9,0.9);
+	WLegend->AddEntry(DpDhQES_w,"DpDhQES","f");
+	WLegend->AddEntry(QES_w,"QES","f");
+	WLegend->AddEntry(NSBrRes_w,"NSBrRes","f");
+	WLegend->AddEntry(PiPBg_w,"PiPBg","f");
+	WLegend->AddEntry(PiNBg_w,"PiNBg","f");
+	WLegend->AddEntry(DpBg_w,"DpBg","f");
+	WLegend->AddEntry(DIS_w,"DIS","f");
+	WLegend->AddEntry(DpDhDelta_w,"DpDhDelta","f");
+	WLegend->AddEntry(otherOOB_w,"otherOOB","f");
+	WLegend->Draw();
 	Canvas_w->Update();
 
 	//finding sum of entries for error check
@@ -659,7 +528,7 @@ void libValMCMethod::Loop()
 	postProcEntries = postProcEntries + DIS_w->Integral();
 	postProcEntries = postProcEntries + DpDhDelta_w->Integral();
 
-	std::cout<<"Cross-section: "<<postProcEntries<<std::endl;
+	std::cout<<"Total entries: "<<postProcEntries<<std::endl;
 	//Saving and cleaning up
 	TFile blobw("histResultsw.root","RECREATE");
 	Stack_w->Write();
@@ -680,19 +549,19 @@ void libValMCMethod::Loop()
 	Stack_W2->Add(otherOOB_W2);
 	Stack_W2->Draw("hist");
 	Stack_W2->GetXaxis()->SetTitle("Hadronic Invariant mass (W2)");
-	Stack_W2->GetYaxis()->SetTitle("Cross section at this W2");
+	Stack_W2->GetYaxis()->SetTitle("Entries at this W2");
 
-	TLegend *WLegend = new TLegend(0.5,0.7,0.9,0.9);
-	WLegend->AddEntry(DpDhQES_W2,"DpDhQES","f");
-	WLegend->AddEntry(QES_W2,"QES","f");
-	WLegend->AddEntry(NSBrRes_W2,"NSBrRes","f");
-	WLegend->AddEntry(PiPBg_W2,"PiPBg","f");
-	WLegend->AddEntry(PiNBg_W2,"PiNBg","f");
-	WLegend->AddEntry(DpBg_W2,"DpBg","f");
-	WLegend->AddEntry(DIS_W2,"DIS","f");
-	WLegend->AddEntry(DpDhDelta_W2,"DpDhDelta","f");
-	WLegend->AddEntry(otherOOB_W2,"otherOOB","f");
-	WLegend->Draw();
+	TLegend *W2Legend = new TLegend(0.5,0.7,0.9,0.9);
+	W2Legend->AddEntry(DpDhQES_W2,"DpDhQES","f");
+	W2Legend->AddEntry(QES_W2,"QES","f");
+	W2Legend->AddEntry(NSBrRes_W2,"NSBrRes","f");
+	W2Legend->AddEntry(PiPBg_W2,"PiPBg","f");
+	W2Legend->AddEntry(PiNBg_W2,"PiNBg","f");
+	W2Legend->AddEntry(DpBg_W2,"DpBg","f");
+	W2Legend->AddEntry(DIS_W2,"DIS","f");
+	W2Legend->AddEntry(DpDhDelta_W2,"DpDhDelta","f");
+	W2Legend->AddEntry(otherOOB_W2,"otherOOB","f");
+	W2Legend->Draw();
 	Canvas_W2->Update();
 
 	//finding sum of entries for error check
@@ -727,7 +596,7 @@ void libValMCMethod::Loop()
 	Stack_x->Add(otherOOB_x);
 	Stack_x->Draw("hist");
 	Stack_x->GetXaxis()->SetTitle("X Bjorken Scaling (x)");
-	Stack_x->GetYaxis()->SetTitle("Cross section at this x");
+	Stack_x->GetYaxis()->SetTitle("Entries at this x");
 
 	TLegend *xLegend = new TLegend(0.5,0.7,0.9,0.9);
 	xLegend->AddEntry(DpDhQES_x,"DpDhQES","f");
@@ -753,7 +622,7 @@ void libValMCMethod::Loop()
 	postProcEntries = postProcEntries + DIS_x->Integral();
 	postProcEntries = postProcEntries + DpDhDelta_x->Integral();
 
-	std::cout<<"Cross-section: "<<postProcEntries<<std::endl;
+	std::cout<<"Entries: "<<postProcEntries<<std::endl;
 	//Saving and cleaning up
 	TFile blobx("histResultsx.root","RECREATE");
 	Stack_x->Write();
@@ -774,7 +643,7 @@ void libValMCMethod::Loop()
 	Stack_Y->Add(otherOOB_Y);
 	Stack_Y->Draw("hist");
 	Stack_Y->GetXaxis()->SetTitle("Relative Energy Transfer (y)");
-	Stack_Y->GetYaxis()->SetTitle("Cross section at this y");
+	Stack_Y->GetYaxis()->SetTitle("Entries at this y");
 
 	TLegend *yLegend = new TLegend(0.5,0.7,0.9,0.9);
 	yLegend->AddEntry(DpDhQES_Y,"DpDhQES","f");
@@ -800,17 +669,10 @@ void libValMCMethod::Loop()
 	postProcEntries = postProcEntries + DIS_Y->Integral();
 	postProcEntries = postProcEntries + DpDhDelta_Y->Integral();
 
-	std::cout<<"Cross-section: "<<postProcEntries<<std::endl;
+	std::cout<<"Entries: "<<postProcEntries<<std::endl;
 	//Saving and cleaning up
 	TFile bloby("histResultsy.root","RECREATE");
 	Stack_Y->Write();
 	bloby.Close();
 	Canvas_Y->SaveAs("histResultsy.png");
 }
-
-
-
-
-
-
-
