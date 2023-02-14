@@ -11,6 +11,7 @@
 #include <TROOT.h>
 #include <TChain.h>
 #include <TFile.h>
+#define MAXNAMELEN 327000
 
 // Header file for the classes stored in the TTree if any.
 
@@ -18,6 +19,12 @@ class libValMCMethod {
 public :
    TTree          *fChain;   //!pointer to the analyzed TTree or TChain
    Int_t           fCurrent; //!current Tree number in a TChain
+   
+   //todo! pass string into .C file side 
+   char 			fileNameOut[MAXNAMELEN];
+   char				nameDir[MAXNAMELEN];
+   //String 			fOut;
+   //String			nameDir;
 
 // Fixed size dimensions of array or collections stored in the TTree if any.
 
@@ -43,7 +50,7 @@ public :
    TBranch        *b_py;   //!
    TBranch        *b_pz;   //!
 
-   libValMCMethod(TTree *tree=0);
+   libValMCMethod(const char* fileIn, const char* dirExtension, const char* fileOut);
    virtual ~libValMCMethod();
    virtual Int_t    Cut(Long64_t entry);
    virtual Int_t    GetEntry(Long64_t entry);
@@ -57,20 +64,41 @@ public :
 #endif
 
 #ifdef libValMCMethod_cxx
-libValMCMethod::libValMCMethod(TTree *tree) : fChain(0) 
+libValMCMethod::libValMCMethod(const char* fileIn, const char* dirExtension, const char* fileOut) 
 {
-// if parameter tree is not specified (or zero), connect the file
-// used to generate this class and read the Tree.
-   if (tree == 0) {
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("GiBUU2021_SBND_Library_pos.root");
-      if (!f || !f->IsOpen()) {
-         f = new TFile("GiBUU2021_SBND_Library_pos.root");
-      }
-      TDirectory * dir = (TDirectory*)f->Get("GiBUU2021_SBND_Library_pos.root:/Ar40/cc/nu_mu");
-      dir->GetObject("records",tree);
 
-   }
-   Init(tree);
+	//input checking
+	if(fileOut == NULL || dirExtension == NULL || fileIn == NULL)
+	{
+		std::cout<<"INPUT INVALID! EXITING"<<std::endl;
+		exit(-1);
+	}
+	std::cout<<"File in : "<<fileIn<<std::endl;
+	std::cout<<"File directory extension : "<<dirExtension<<std::endl;
+	std::cout<<"File out : "<<fileOut<<std::endl;
+	strcpy(fileNameOut,fileOut);
+   	strcpy(nameDir,dirExtension);
+
+
+	TFile *f=new TFile(fileIn,"READ");
+	TTree *tree=(TTree*)f->Get(Form("%s/records",dirExtension));
+
+	//depricated
+
+	// if parameter tree is not specified (or zero), connect the file
+	// used to generate this class and read the Tree.
+   	/*if (tree == 0) {
+     	TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("GiBUU2021_SBND_Library_pos.root");
+    	if (!f || !f->IsOpen()) {
+        	f = new TFile("GiBUU2021_SBND_Library_pos.root");
+      	}
+      	TDirectory * dir = (TDirectory*)f->Get("GiBUU2021_SBND_Library_pos.root:/Ar40/cc/nu_mu");
+      	dir->GetObject("records",tree);
+
+   	}*/
+   
+   
+   	Init(tree);
 }
 
 libValMCMethod::~libValMCMethod()

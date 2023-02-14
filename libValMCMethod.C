@@ -1,6 +1,7 @@
 //includes
 #define libValMCMethod_cxx
 #include "libValMCMethod.h"
+#include <string.h>
 #include <cmath>
 #include <TH2.h>
 #include <TH1D.h>
@@ -14,17 +15,34 @@ double MUMASS = 0.10566;
 double CPIMASS = 0.13957;
 double PI0MASS = 0.13497;
 double PRTMASS = 0.93827;
+double ELMASS = 0.00051;
+double NUMASS = 0;
+double ELMASSSQR = ELMASS * ELMASS;
 double MUMASSSQR = MUMASS * MUMASS;
 
 //misc functions
 
 
 //4 momentum transfer
-double GetQ2(double enu, double emu, double pmuz)
+double GetQ2(double enu, double emu, double pmuz, int lepID)
 {
 	double pmuL = pmuz;
 	double mom4 = 2*enu*(emu-pmuL);
-	mom4 = mom4 - MUMASSSQR; 
+	switch(lepID)
+	{
+		case 11:
+		case -11:
+			mom4 = mom4 - ELMASSSQR; 
+		break;
+		case 13:
+		case -13:
+			mom4 = mom4 - MUMASSSQR;
+		break;
+		case 14:
+		case -14:
+			mom4 = mom4 - NUMASS;
+		break;
+	}
 	return mom4;
 }
 
@@ -90,6 +108,44 @@ void libValMCMethod::Loop()
 	// METHOD2: replace line
 	//    fChain->GetEntry(jentry);       //read all branches
 	//by  b_branchname->GetEntry(ientry); //read only this branch
+
+	//setup lepton general matching
+	
+	int leptonId = 0;
+
+	if(strcmp("Ar40/cc/nu_mu",nameDir)==0)
+	{
+		leptonId = 13;
+	}
+	else
+	if(strcmp("Ar40/cc/nu_e",nameDir)==0)
+	{
+		leptonId = 11;
+	}
+	else
+	if(strcmp("Ar40/nc/nu",nameDir)==0)
+	{
+		leptonId = 14;
+	}
+	else
+	if(strcmp("Ar40/nc/nu_bar",nameDir)==0)
+	{
+		leptonId = -14;
+	}
+	else
+	if(strcmp("Ar40/cc/nu_mu_bar",nameDir)==0)
+	{
+		leptonId = -13;
+	}
+	else
+	if(strcmp("Ar40/cc/nu_e_bar",nameDir)==0)
+	{
+		leptonId = -11;
+	}
+	if(leptonId == 0)
+	{
+		std::cout<<"Error finding Lepton! directory extension = "<<nameDir<<std::endl;
+	}
 
 	//Drawing estab. as per recommended style from Raquel
 
@@ -282,9 +338,9 @@ void libValMCMethod::Loop()
 				QES_Enu->Fill(Enu,weight);
 				for(int i = 0; i < nparts; i++)
 				{
-					if(prod_id == 1 && muonFound == 0 && pdg[i] == 13)
+					if(prod_id == 1 && muonFound == 0 && pdg[i] == leptonId)
 					{
-						QES_Q->Fill(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),weight);
+						QES_Q->Fill(GetQ2(Enu, E[i], pz[i],leptonId),weight);
 						QES_w->Fill(Getw(Enu,E[i]),weight);
 						QES_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						QES_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -297,9 +353,9 @@ void libValMCMethod::Loop()
 				NSBrRes_Enu->Fill(Enu,weight);
 				for(int i = 0; i < nparts; i++)
 				{
-					if(prod_id>=2 && prod_id<=31 && pdg[i] == 13 && muonFound == 0)
+					if(prod_id>=2 && prod_id<=31 && pdg[i] == leptonId && muonFound == 0)
 					{
-						NSBrRes_Q->Fill(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),weight);
+						NSBrRes_Q->Fill(GetQ2(Enu, E[i], pz[i],leptonId),weight);
 						NSBrRes_w->Fill(Getw(Enu,E[i]),weight);
 						NSBrRes_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						NSBrRes_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -312,9 +368,9 @@ void libValMCMethod::Loop()
 				PiNBg_Enu->Fill(Enu,weight);
 				for(int i = 0; i < nparts; i++)
 				{
-					if(prod_id==32 && muonFound == 0 && pdg[i] == 13)
+					if(prod_id==32 && muonFound == 0 && pdg[i] == leptonId)
 					{
-						PiNBg_Q->Fill(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),weight);
+						PiNBg_Q->Fill(GetQ2(Enu, E[i], pz[i],leptonId),weight);
 						PiNBg_w->Fill(Getw(Enu,E[i]),weight);
 						PiNBg_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						PiNBg_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -327,9 +383,9 @@ void libValMCMethod::Loop()
 				PiPBg_Enu->Fill(Enu,weight);
 				for(int i = 0; i < nparts; i++)
 				{
-					if(prod_id==33 && muonFound == 0 && pdg[i] == 13)
+					if(prod_id==33 && muonFound == 0 && pdg[i] == leptonId)
 					{
-						PiPBg_Q->Fill(GetQ2(Enu, E[i], pz[i]),weight);
+						PiPBg_Q->Fill(GetQ2(Enu, E[i], pz[i],leptonId),weight);
 						PiPBg_w->Fill(Getw(Enu,E[i]),weight);
 						PiPBg_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						PiPBg_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -342,9 +398,9 @@ void libValMCMethod::Loop()
 				DIS_Enu->Fill(Enu,weight);
 				for(int i = 0; i < nparts; i++)
 				{
-					if(prod_id==34 && muonFound == 0 && pdg[i] == 13)
+					if(prod_id==34 && muonFound == 0 && pdg[i] == leptonId)
 					{
-						DIS_Q->Fill(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),weight);
+						DIS_Q->Fill(GetQ2(Enu, E[i], pz[i],leptonId),weight);
 						DIS_w->Fill(Getw(Enu,E[i]),weight);
 						DIS_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						DIS_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -357,9 +413,9 @@ void libValMCMethod::Loop()
 				DpDhQES_Enu->Fill(Enu,weight);
 				for(int i = 0; i < nparts; i++)
 				{
-					if(prod_id==35 && muonFound == 0 && pdg[i] == 13)
+					if(prod_id==35 && muonFound == 0 && pdg[i] == leptonId)
 					{
-						DpDhQES_Q->Fill(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),weight);
+						DpDhQES_Q->Fill(GetQ2(Enu, E[i], pz[i],leptonId),weight);
 						DpDhQES_w->Fill(Getw(Enu,E[i]),weight);
 						DpDhQES_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						DpDhQES_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -372,9 +428,9 @@ void libValMCMethod::Loop()
 				DpDhDelta_Enu->Fill(Enu,weight);
 				for(int i = 0; i < nparts; i++)
 				{
-					if(prod_id==36 && muonFound == 0 && pdg[i] == 13)
+					if(prod_id==36 && muonFound == 0 && pdg[i] == leptonId)
 					{
-						DpDhDelta_Q->Fill(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),weight);
+						DpDhDelta_Q->Fill(GetQ2(Enu, E[i], pz[i],leptonId),weight);
 						DpDhDelta_w->Fill(Getw(Enu,E[i]),weight);
 						DpDhDelta_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						DpDhDelta_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -387,9 +443,9 @@ void libValMCMethod::Loop()
 				DpBg_Enu->Fill(Enu,weight);
 				for(int i = 0; i < nparts; i++)
 				{
-					if(prod_id==37 && muonFound == 0 && pdg[i] == 13)
+					if(prod_id==37 && muonFound == 0 && pdg[i] == leptonId)
 					{
-						DpBg_Q->Fill(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),weight);
+						DpBg_Q->Fill(GetQ2(Enu, E[i], pz[i],leptonId),weight);
 						DpBg_w->Fill(Getw(Enu,E[i]),weight);
 						DpBg_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 						DpBg_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
@@ -564,9 +620,11 @@ void libValMCMethod::Loop()
 	std::cout<<"Cross-section: "<<postProcEntries<<std::endl;
 	//Saving and cleaning up
 	
-	TFile blobE("histResultsE.root","RECREATE");
+	//todo! generalizing names!
+	
+	TFile blob(fileNameOut,"RECREATE");
 	Stack_Enu->Write();
-	blobE.Close();
+	//blobE.Close();
 	Canvas_Enu->SaveAs("histResultsE.png");
 
 	//Q stacking
@@ -613,9 +671,10 @@ void libValMCMethod::Loop()
 	std::cout<<"Cross-section: "<<postProcEntries<<std::endl;
 	//Saving and cleaning up
 	
-	TFile blobQ("histResultsQ.root","RECREATE");
+	//TFile blobQ("histResultsQ.root","RECREATE");
+	blob.cd();
 	Stack_Q->Write();
-	blobQ.Close();
+	//blobQ.Close();
 	Canvas_Q->SaveAs("histResultsQ.png");
 	
 
@@ -661,9 +720,10 @@ void libValMCMethod::Loop()
 
 	std::cout<<"Cross-section: "<<postProcEntries<<std::endl;
 	//Saving and cleaning up
-	TFile blobw("histResultsw.root","RECREATE");
+	//TFile blobw("histResultsw.root","RECREATE");
+	blob.cd();
 	Stack_w->Write();
-	blobw.Close();
+	//blobw.Close();
 	Canvas_w->SaveAs("histResultsW.png");
 
 	//W2
@@ -708,9 +768,10 @@ void libValMCMethod::Loop()
 
 	std::cout<<"Total entries: "<<postProcEntries<<std::endl;
 	//Saving and cleaning up
-	TFile blobW2("histResultsW2.root","RECREATE");
+	//TFile blobW2("histResultsW2.root","RECREATE");
+	blob.cd();
 	Stack_W2->Write();
-	blobW2.Close();
+	//blobW2.Close();
 	Canvas_W2->SaveAs("histResultsW2.png");
 
 	//x
@@ -755,9 +816,10 @@ void libValMCMethod::Loop()
 
 	std::cout<<"Cross-section: "<<postProcEntries<<std::endl;
 	//Saving and cleaning up
-	TFile blobx("histResultsx.root","RECREATE");
+	//TFile blobx("histResultsx.root","RECREATE");
+	blob.cd();
 	Stack_x->Write();
-	blobx.Close();
+	//blobx.Close();
 	Canvas_x->SaveAs("histResultsx.png");
 
 	//y
@@ -802,9 +864,10 @@ void libValMCMethod::Loop()
 
 	std::cout<<"Cross-section: "<<postProcEntries<<std::endl;
 	//Saving and cleaning up
-	TFile bloby("histResultsy.root","RECREATE");
+	//TFile bloby("histResultsy.root","RECREATE");
+	blob.cd();
 	Stack_Y->Write();
-	bloby.Close();
+	blob.Close();
 	Canvas_Y->SaveAs("histResultsy.png");
 }
 
