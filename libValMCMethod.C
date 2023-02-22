@@ -247,6 +247,16 @@ void libValMCMethod::Loop()
 	TH1D* DpBg_Y = new TH1D("2pBg_Y","relative energy transfer for 2 pion background",100,0,1);
 	TH1D* otherOOB_Y = new TH1D("OOB_Y","relative energy transfer for out of bounds channels",100,0,1);
 
+
+	//total histograms for channel-normalized data
+
+	TH1D* Tot_Enu = new TH1D("Tot_Enu","Neutrino energy",100,0,6);
+	TH1D* Tot_Q = new TH1D("Tot_Q","4-P transfer",100,0,6);
+	TH1D* Tot_w = new TH1D("Tot_w","Energy transfer",100,0,6);
+	TH1D* Tot_W2 = new TH1D("Tot_W2","invarient hadronic mass",100,0,6);
+	TH1D* Tot_x = new TH1D("Tot_x","x-bjorken scaling",100,0,6);
+	TH1D* Tot_Y = new TH1D("Tot_Y","relative energy transfer",100,0,6);
+
 	//set indidivual colors/styles
 	
 	QES_Enu->SetFillColor(kYellow);
@@ -309,6 +319,13 @@ void libValMCMethod::Loop()
 	DpBg_Y->SetFillColor(kTeal);
 	otherOOB_Y->SetFillColor(kBlack);
 
+	Tot_Y->SetFillColor(kYellow);
+	Tot_x->SetFillColor(kBlue);
+	Tot_W2->SetFillColor(kGreen);
+	Tot_w->SetFillColor(kRed);
+	Tot_Q->SetFillColor(kPink);
+	Tot_Enu->SetFillColor(kMagenta);
+
 	if (fChain == 0) return; 
 
 	Long64_t nentries = fChain->GetEntriesFast();
@@ -331,6 +348,22 @@ void libValMCMethod::Loop()
 		if (ientry < 0) break; 
 		nb = fChain->GetEntry(jentry);   
 		nbytes += nb;
+		muonFound = 0;
+
+		Tot_Enu->Fill(Enu,weight);
+		for(int i = 0; i < nparts; i++)
+		{
+			if(muonFound == 0) //no lepton check needed- this is channel-agnostic
+			{
+				Tot_Q->Fill(GetQ2(Enu, E[i], pz[i],leptonId),weight);
+				Tot_w->Fill(Getw(Enu,E[i]),weight);
+				Tot_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
+				Tot_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
+				Tot_Y->Fill(GetY(Getw(Enu,E[i]),Enu),weight);
+				muonFound = 1;
+			}
+		}
+		
 		muonFound = 0;
 		switch(prod_id)
 		{
@@ -869,6 +902,35 @@ void libValMCMethod::Loop()
 	Stack_Y->Write();
 	blob.Close();
 	Canvas_Y->SaveAs("histResultsy.png");
+
+	//total histogram- displays entries by channel type
+	TCanvas *Canvas_Tot = new TCanvas("Canvas_Tot");
+	THStack *Stack_Tot = new THStack("Stack_Tot","All channel data for this interaction type.");
+	Stack_Tot->Add(Tot_Enu);
+	Stack_Tot->Add(Tot_Q);
+	Stack_Tot->Add(Tot_w);
+	Stack_Tot->Add(Tot_W2);
+	Stack_Tot->Add(Tot_x);
+	Stack_Tot->Add(Tot_Y);
+	Stack_Tot->Draw("hist");
+	Stack_Tot->GetXaxis()->SetTitle("Total channel production");
+	Stack_Tot->GetYaxis()->SetTitle("Cross section");
+
+	TLegend *TotLegend = new TLegend(0.5,0.7,0.9,0.9);
+	TotLegend->AddEntry(Tot_Y,"Y","f");
+	TotLegend->AddEntry(Tot_Enu,"Enu","f");
+	TotLegend->AddEntry(Tot_Q,"Q","f");
+	TotLegend->AddEntry(Tot_w,"w","f");
+	TotLegend->AddEntry(Tot_x,"x","f");
+	TotLegend->AddEntry(Tot_W2,"W2","f");
+	TotLegend->Draw();
+	Canvas_Tot->Update();
+
+	TFile Totblob("TotalChannelProduction.root","RECREATE");
+	Stack_Tot->Write();
+	Totblob.Close();
+	Canvas_Tot->SaveAs("histResultsTot.png");
+
 }
 
 
