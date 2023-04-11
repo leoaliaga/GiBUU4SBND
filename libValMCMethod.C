@@ -179,62 +179,62 @@ void libValMCMethod::Loop()
 
 	//Enu histograms
 
-	TH1D* QES_Enu = new TH1D("QES_Enu","Neutrino energy for Quasi-elastic Scattering",100,0,7);  
-	TH1D* NSBrRes_Enu = new TH1D("NSBrRes_Enu","Neutrino energy for Non-Strange Baryon Resonance",100,0,7);
-	TH1D* PiNBg_Enu = new TH1D("PiNBg_Enu","Neutrino Energy for Pi-Neutron Background",100,0,7);
-	TH1D* PiPBg_Enu = new TH1D("PiPBg_Enu","Neutrino Energy for Pi-Proton Background",100,0,7);
-	TH1D* DIS_Enu = new TH1D("DIS_Enu","Neutrino Energy for Dip Inelastic Scattering",100,0,7);
-	TH1D* DpDhQES_Enu = new TH1D("2p2hQES_Enu","Neutrino energy for 2p2h Quasi-elastic Scattering",100,0,7);
-	TH1D* DpDhDelta_Enu = new TH1D("2p2hDelta_Enu","Neutrino energy for 2p2h Delta resonance",100,0,7);
-	TH1D* DpBg_Enu = new TH1D("2pBg","Neutrino Energy for 2 pion background",100,0,7);
-	TH1D* otherOOB_Enu = new TH1D("OOB_Enu","Neutrino Energy for out of bounds channels",100,0,7);
+	TH1D* QES_Enu = new TH1D("QES_Enu","Neutrino energy for Quasi-elastic Scattering",100,0,5);  
+	TH1D* NSBrRes_Enu = new TH1D("NSBrRes_Enu","Neutrino energy for Non-Strange Baryon Resonance",100,0,5);
+	TH1D* PiNBg_Enu = new TH1D("PiNBg_Enu","Neutrino Energy for Pi-Neutron Background",100,0,5);
+	TH1D* PiPBg_Enu = new TH1D("PiPBg_Enu","Neutrino Energy for Pi-Proton Background",100,0,5);
+	TH1D* DIS_Enu = new TH1D("DIS_Enu","Neutrino Energy for Dip Inelastic Scattering",100,0,5);
+	TH1D* DpDhQES_Enu = new TH1D("2p2hQES_Enu","Neutrino energy for 2p2h Quasi-elastic Scattering",100,0,5);
+	TH1D* DpDhDelta_Enu = new TH1D("2p2hDelta_Enu","Neutrino energy for 2p2h Delta resonance",100,0,5);
+	TH1D* DpBg_Enu = new TH1D("2pBg","Neutrino Energy for 2 pion background",100,0,5);
+	TH1D* otherOOB_Enu = new TH1D("OOB_Enu","Neutrino Energy for out of bounds channels",100,0,5);
 
 	//Q^2 histograms
 
-	TH1D* QES_Q = new TH1D("QES_Q","4-P transfer for Quasi-elastic Scattering",100,0,2);  
-	TH1D* NSBrRes_Q = new TH1D("NSBrRes_Q","4-P transfer for Non-Strange Baryon Resonance",100,0,2);
-	TH1D* PiNBg_Q = new TH1D("PiNBg_Q","4-P transfer for Pi-Neutron Background",100,0,2);
-	TH1D* PiPBg_Q = new TH1D("PiPBg_Q","4-P transfer for Pi-Proton Background",100,0,2);
-	TH1D* DIS_Q = new TH1D("DIS_Q","4-P transfer for Dip Inelastic Scattering",100,0,2);
-	TH1D* DpDhQES_Q = new TH1D("2p2hQES_Q","4-P transfer for 2p2h Quasi-elastic Scattering",100,0,2);
-	TH1D* DpDhDelta_Q = new TH1D("2p2hDelta_Q","4-P transfer for 2p2h Delta resonance",100,0,2);
-	TH1D* DpBg_Q = new TH1D("2pBg_Q","4-P transfer for 2 pion background",100,0,2);
-	TH1D* otherOOB_Q = new TH1D("OOB_Q","4-P transfer for out of bounds channels",100,0,2);
+	TH1D* QES_Q = new TH1D("QES_Q^{2}","4-P transfer for Quasi-elastic Scattering",100,0,2);  
+	TH1D* NSBrRes_Q = new TH1D("NSBrRes_Q^{2}","4-P transfer for Non-Strange Baryon Resonance",100,0,2);
+	TH1D* PiNBg_Q = new TH1D("PiNBg_Q^{2}","4-P transfer for Pi-Neutron Background",100,0,2);
+	TH1D* PiPBg_Q = new TH1D("PiPBg_Q^{2}","4-P transfer for Pi-Proton Background",100,0,2);
+	TH1D* DIS_Q = new TH1D("DIS_Q^{2}","4-P transfer for Dip Inelastic Scattering",100,0,2);
+	TH1D* DpDhQES_Q = new TH1D("2p2hQES_Q^{2}","4-P transfer for 2p2h Quasi-elastic Scattering",100,0,2);
+	TH1D* DpDhDelta_Q = new TH1D("2p2hDelta_Q^{2}","4-P transfer for 2p2h Delta resonance",100,0,2);
+	TH1D* DpBg_Q = new TH1D("2pBg_Q^{2}","4-P transfer for 2 pion background",100,0,2);
+	TH1D* otherOOB_Q = new TH1D("OOB_Q^{2}","4-P transfer for out of bounds channels",100,0,2);
 
 	//Energy Transfer 
 
-	TH1D* QES_w = new TH1D("QES_w","Energy transfer for Quasi-elastic Scattering",100,0,4);  
-	TH1D* NSBrRes_w = new TH1D("NSBrRes_w","Energy transfer for Non-Strange Baryon Resonance",100,0,4);
-	TH1D* PiNBg_w = new TH1D("PiNBg_w","Energy transfer for Pi-Neutron Background",100,0,4);
-	TH1D* PiPBg_w = new TH1D("PiPBg_w","Energy transfer for Pi-Proton Background",100,0,4);
-	TH1D* DIS_w = new TH1D("DIS_w","Energy transfer for Dip Inelastic Scattering",100,0,4);
-	TH1D* DpDhQES_w = new TH1D("2p2hQES_w","Energy transfer for 2p2h Quasi-elastic Scattering",100,0,4);
-	TH1D* DpDhDelta_w = new TH1D("2p2hDelta_w","Energy transfer for 2p2h Delta resonance",100,0,4);
-	TH1D* DpBg_w = new TH1D("2pBg_w","Energy transfer for 2 pion background",100,0,4);
-	TH1D* otherOOB_w = new TH1D("OOB_w","Energy transfer for out of bounds channels",100,0,4);
+	TH1D* QES_w = new TH1D("QES_#omega","Energy transfer for Quasi-elastic Scattering",100,0,2);  
+	TH1D* NSBrRes_w = new TH1D("NSBrRes_#omega","Energy transfer for Non-Strange Baryon Resonance",100,0,2);
+	TH1D* PiNBg_w = new TH1D("PiNBg_#omega","Energy transfer for Pi-Neutron Background",100,0,2);
+	TH1D* PiPBg_w = new TH1D("PiPBg_#omega","Energy transfer for Pi-Proton Background",100,0,2);
+	TH1D* DIS_w = new TH1D("DIS_#omega","Energy transfer for Dip Inelastic Scattering",100,0,2);
+	TH1D* DpDhQES_w = new TH1D("2p2hQES_#omega","Energy transfer for 2p2h Quasi-elastic Scattering",100,0,2);
+	TH1D* DpDhDelta_w = new TH1D("2p2hDelta_#omega","Energy transfer for 2p2h Delta resonance",100,0,2);
+	TH1D* DpBg_w = new TH1D("2pBg_#omega","Energy transfer for 2 pion background",100,0,2);
+	TH1D* otherOOB_w = new TH1D("OOB_#omega","Energy transfer for out of bounds channels",100,0,2);
 
 	//invarient hadronic mass
 
-	TH1D* QES_W2 = new TH1D("QES_W2","invarient hadronic mass for Quasi-elastic Scattering",100,0,5);  
-	TH1D* NSBrRes_W2 = new TH1D("NSBrRes_W2","invarient hadronic mass for Non-Strange Baryon Resonance",100,0,5);
-	TH1D* PiNBg_W2 = new TH1D("PiNBg_W2","invarient hadronic mass for Pi-Neutron Background",100,0,5);
-	TH1D* PiPBg_W2 = new TH1D("PiPBg_W2","invarient hadronic mass for Pi-Proton Background",100,0,5);
-	TH1D* DIS_W2 = new TH1D("DIS_W2","invarient hadronic mass for Dip Inelastic Scattering",100,0,5);
-	TH1D* DpDhQES_W2 = new TH1D("2p2hQES_W2","invarient hadronic mass for 2p2h Quasi-elastic Scattering",100,0,5);
-	TH1D* DpDhDelta_W2 = new TH1D("2p2hDelta_W2","invarient hadronic mass for 2p2h Delta resonance",100,0,5);
-	TH1D* DpBg_W2 = new TH1D("2pBg_W2","invarient hadronic mass for 2 pion background",100,0,5);
-	TH1D* otherOOB_W2 = new TH1D("OOB_W2","invarient hadronic mass for out of bounds channels",100,0,5);
+	TH1D* QES_W2 = new TH1D("QES_W^{2}","invarient hadronic mass for Quasi-elastic Scattering",100,0,4);  
+	TH1D* NSBrRes_W2 = new TH1D("NSBrRes_W^{2}","invarient hadronic mass for Non-Strange Baryon Resonance",100,0,4);
+	TH1D* PiNBg_W2 = new TH1D("PiNBg_W^{2}","invarient hadronic mass for Pi-Neutron Background",100,0,4);
+	TH1D* PiPBg_W2 = new TH1D("PiPBg_W^{2}","invarient hadronic mass for Pi-Proton Background",100,0,4);
+	TH1D* DIS_W2 = new TH1D("DIS_W^{2}","invarient hadronic mass for Dip Inelastic Scattering",100,0,4);
+	TH1D* DpDhQES_W2 = new TH1D("2p2hQES_W^{2}","invarient hadronic mass for 2p2h Quasi-elastic Scattering",100,0,4);
+	TH1D* DpDhDelta_W2 = new TH1D("2p2hDelta_W^{2}","invarient hadronic mass for 2p2h Delta resonance",100,0,4);
+	TH1D* DpBg_W2 = new TH1D("2pBg_W^{2}","invarient hadronic mass for 2 pion background",100,0,4);
+	TH1D* otherOOB_W2 = new TH1D("OOB_W^{2}","invarient hadronic mass for out of bounds channels",100,0,4);
 
 	//x-bjorken scaling
-	TH1D* QES_x = new TH1D("QES_x","x-bjorken scaling for Quasi-elastic Scattering",100,0,7);  
-	TH1D* NSBrRes_x = new TH1D("NSBrRes_x","x-bjorken scaling for Non-Strange Baryon Resonance",100,0,7);
-	TH1D* PiNBg_x = new TH1D("PiNBg_x","x-bjorken scaling for Pi-Neutron Background",100,0,7);
-	TH1D* PiPBg_x = new TH1D("PiPBg_x","x-bjorken scaling for Pi-Proton Background",100,0,7);
-	TH1D* DIS_x = new TH1D("DIS_x","x-bjorken scaling for Dip Inelastic Scattering",100,0,7);
-	TH1D* DpDhQES_x = new TH1D("2p2hQES_x","x-bjorken scalings for 2p2h Quasi-elastic Scattering",100,0,7);
-	TH1D* DpDhDelta_x = new TH1D("2p2hDelta_x","x-bjorken scaling for 2p2h Delta resonance",100,0,7);
-	TH1D* DpBg_x = new TH1D("2pBg_x","x-bjorken scaling for 2 pion background",100,0,7);
-	TH1D* otherOOB_x = new TH1D("OOB_x","x-bjorken scaling for out of bounds channels",100,0,7);
+	TH1D* QES_x = new TH1D("QES_x","x-bjorken scaling for Quasi-elastic Scattering",100,0,4);  
+	TH1D* NSBrRes_x = new TH1D("NSBrRes_x","x-bjorken scaling for Non-Strange Baryon Resonance",100,0,4);
+	TH1D* PiNBg_x = new TH1D("PiNBg_x","x-bjorken scaling for Pi-Neutron Background",100,0,4);
+	TH1D* PiPBg_x = new TH1D("PiPBg_x","x-bjorken scaling for Pi-Proton Background",100,0,4);
+	TH1D* DIS_x = new TH1D("DIS_x","x-bjorken scaling for Dip Inelastic Scattering",100,0,4);
+	TH1D* DpDhQES_x = new TH1D("2p2hQES_x","x-bjorken scalings for 2p2h Quasi-elastic Scattering",100,0,4);
+	TH1D* DpDhDelta_x = new TH1D("2p2hDelta_x","x-bjorken scaling for 2p2h Delta resonance",100,0,4);
+	TH1D* DpBg_x = new TH1D("2pBg_x","x-bjorken scaling for 2 pion background",100,0,4);
+	TH1D* otherOOB_x = new TH1D("OOB_x","x-bjorken scaling for out of bounds channels",100,0,4);
 
 	//relative energy transfer
 	TH1D* QES_Y = new TH1D("QES_Y","relative energy transfer for Quasi-elastic Scattering",100,0,1);  
@@ -250,12 +250,13 @@ void libValMCMethod::Loop()
 
 	//total histograms for channel-normalized data
 
-	TH1D* Tot_Enu = new TH1D("Tot_Enu","Neutrino energy",100,0,6);
-	TH1D* Tot_Q = new TH1D("Tot_Q","4-P transfer",100,0,6);
-	TH1D* Tot_w = new TH1D("Tot_w","Energy transfer",100,0,6);
-	TH1D* Tot_W2 = new TH1D("Tot_W2","invarient hadronic mass",100,0,6);
-	TH1D* Tot_x = new TH1D("Tot_x","x-bjorken scaling",100,0,6);
-	TH1D* Tot_Y = new TH1D("Tot_Y","relative energy transfer",100,0,6);
+	
+	TH1D* Tot_Enu = new TH1D("Tot_Enu","Neutrino energy",100,0,5);
+	TH1D* Tot_Q = new TH1D("Tot_Q2","4-P transfer",100,0,2);
+	TH1D* Tot_w = new TH1D("Tot_w","Energy transfer",100,0,2);
+	TH1D* Tot_W2 = new TH1D("Tot_W2","invarient hadronic mass",100,0,4);
+	TH1D* Tot_x = new TH1D("Tot_x","x-bjorken scaling",100,0,4);
+	TH1D* Tot_y = new TH1D("Tot_y","relative energy transfer",100,0,1);
 
 	//set indidivual colors/styles
 	
@@ -319,7 +320,7 @@ void libValMCMethod::Loop()
 	DpBg_Y->SetFillColor(kTeal);
 	otherOOB_Y->SetFillColor(kBlack);
 
-	Tot_Y->SetFillColor(kYellow);
+	Tot_y->SetFillColor(kYellow);
 	Tot_x->SetFillColor(kBlue);
 	Tot_W2->SetFillColor(kGreen);
 	Tot_w->SetFillColor(kRed);
@@ -359,7 +360,7 @@ void libValMCMethod::Loop()
 				Tot_w->Fill(Getw(Enu,E[i]),weight);
 				Tot_W2->Fill(GetHadInvarientMass(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
 				Tot_x->Fill(GetXBjorken(GetQ2Method2(px[i], py[i], pz[i], E[i], Enu),Getw(Enu,E[i])),weight);
-				Tot_Y->Fill(GetY(Getw(Enu,E[i]),Enu),weight);
+				Tot_y->Fill(GetY(Getw(Enu,E[i]),Enu),weight);
 				muonFound = 1;
 			}
 		}
@@ -610,7 +611,7 @@ void libValMCMethod::Loop()
 
 	//Enu stacking
 	TCanvas *Canvas_Enu = new TCanvas("Canvas_Enu");
-	THStack *Stack_Enu = new THStack("Stack_Enu","All (read: numu-cc atm) production methods Nuetrino Energies");
+	THStack *Stack_Enu = new THStack("Stack_Enu","Selected production methods Nuetrino Energies");
 	Stack_Enu->Add(DpDhQES_Enu);
 	Stack_Enu->Add(QES_Enu);
 	Stack_Enu->Add(NSBrRes_Enu);
@@ -621,18 +622,18 @@ void libValMCMethod::Loop()
 	Stack_Enu->Add(DpDhDelta_Enu);
 	Stack_Enu->Add(otherOOB_Enu);
 	Stack_Enu->Draw("hist");
-	Stack_Enu->GetXaxis()->SetTitle("Neutrino Energy (Enu)");
-	Stack_Enu->GetYaxis()->SetTitle("Cross section at this Energy");
+	Stack_Enu->GetXaxis()->SetTitle("Neutrino Energy (E_{#nu})");
+	Stack_Enu->GetYaxis()->SetTitle("#sigma at this Energy");
 
-	TLegend *EnuLegend = new TLegend(0.5,0.7,0.9,0.9);
-	EnuLegend->AddEntry(DpDhQES_Enu,"DpDhQES","f");
+	TLegend *EnuLegend = new TLegend(0.6,0.5,0.9,0.9);
+	EnuLegend->AddEntry(DpDhQES_Enu,"2p2hQES","f");
 	EnuLegend->AddEntry(QES_Enu,"QES","f");
 	EnuLegend->AddEntry(NSBrRes_Enu,"NSBrRes","f");
 	EnuLegend->AddEntry(PiPBg_Enu,"PiPBg","f");
 	EnuLegend->AddEntry(PiNBg_Enu,"PiNBg","f");
-	EnuLegend->AddEntry(DpBg_Enu,"DpBg","f");
+	EnuLegend->AddEntry(DpBg_Enu,"2pBg","f");
 	EnuLegend->AddEntry(DIS_Enu,"DIS","f");
-	EnuLegend->AddEntry(DpDhDelta_Enu,"DpDhDelta","f");
+	EnuLegend->AddEntry(DpDhDelta_Enu,"2p2hDelta","f");
 	EnuLegend->AddEntry(otherOOB_Enu,"otherOOB","f");
 	EnuLegend->Draw();
 	Canvas_Enu->Update();
@@ -662,7 +663,7 @@ void libValMCMethod::Loop()
 
 	//Q stacking
 	TCanvas *Canvas_Q = new TCanvas("Canvas_Q");
-	THStack *Stack_Q = new THStack("Stack_Q","All (read: numu-cc atm) production methods 4-momentum transfer");
+	THStack *Stack_Q = new THStack("Stack_Q","Selected production methods 4-momentum transfer");
 	Stack_Q->Add(DpDhQES_Q);
 	Stack_Q->Add(QES_Q);
 	Stack_Q->Add(NSBrRes_Q);
@@ -673,18 +674,18 @@ void libValMCMethod::Loop()
 	Stack_Q->Add(DpDhDelta_Q);
 	Stack_Q->Add(otherOOB_Q);
 	Stack_Q->Draw("hist");
-	Stack_Q->GetXaxis()->SetTitle("4 momentum transfer (Q2)");
-	Stack_Q->GetYaxis()->SetTitle("Cross section at this Q2");
+	Stack_Q->GetXaxis()->SetTitle("4 momentum transfer (Q^{2})");
+	Stack_Q->GetYaxis()->SetTitle("#sigma at this Q^{2}");
 
-	TLegend *Q2Legend = new TLegend(0.5,0.7,0.9,0.9);
-	Q2Legend->AddEntry(DpDhQES_Q,"DpDhQES","f");
+	TLegend *Q2Legend = new TLegend(0.3,0.5,0.9,0.9);
+	Q2Legend->AddEntry(DpDhQES_Q,"2p2hQES","f");
 	Q2Legend->AddEntry(QES_Q,"QES","f");
 	Q2Legend->AddEntry(NSBrRes_Q,"NSBrRes","f");
 	Q2Legend->AddEntry(PiPBg_Q,"PiPBg","f");
 	Q2Legend->AddEntry(PiNBg_Q,"PiNBg","f");
-	Q2Legend->AddEntry(DpBg_Q,"DpBg","f");
+	Q2Legend->AddEntry(DpBg_Q,"2pBg","f");
 	Q2Legend->AddEntry(DIS_Q,"DIS","f");
-	Q2Legend->AddEntry(DpDhDelta_Q,"DpDhDelta","f");
+	Q2Legend->AddEntry(DpDhDelta_Q,"2p2hDelta","f");
 	Q2Legend->AddEntry(otherOOB_Q,"otherOOB","f");
 	Q2Legend->Draw();
 	Canvas_Q->Update();
@@ -713,7 +714,7 @@ void libValMCMethod::Loop()
 
 	//w
 	TCanvas *Canvas_w = new TCanvas("Canvas_w");
-	THStack *Stack_w = new THStack("Stack_w","All (read: numu-cc atm) production methods energy transfer");
+	THStack *Stack_w = new THStack("Stack_w","Selected production methods energy transfer");
 	Stack_w->Add(DpDhQES_w);
 	Stack_w->Add(QES_w);
 	Stack_w->Add(NSBrRes_w);
@@ -724,18 +725,18 @@ void libValMCMethod::Loop()
 	Stack_w->Add(DpDhDelta_w);
 	Stack_w->Add(otherOOB_w);
 	Stack_w->Draw("hist");
-	Stack_w->GetXaxis()->SetTitle("Energy transfer (w)");
-	Stack_w->GetYaxis()->SetTitle("Cross section at this w");
+	Stack_w->GetXaxis()->SetTitle("Energy transfer (#omega)");
+	Stack_w->GetYaxis()->SetTitle("#sigma at this #omega");
 
-	TLegend *wLegend = new TLegend(0.5,0.7,0.9,0.9);
-	wLegend->AddEntry(DpDhQES_w,"DpDhQES","f");
+	TLegend *wLegend = new TLegend(0.3,0.5,0.9,0.9);
+	wLegend->AddEntry(DpDhQES_w,"2p2hQES","f");
 	wLegend->AddEntry(QES_w,"QES","f");
 	wLegend->AddEntry(NSBrRes_w,"NSBrRes","f");
 	wLegend->AddEntry(PiPBg_w,"PiPBg","f");
 	wLegend->AddEntry(PiNBg_w,"PiNBg","f");
-	wLegend->AddEntry(DpBg_w,"DpBg","f");
+	wLegend->AddEntry(DpBg_w,"2pBg","f");
 	wLegend->AddEntry(DIS_w,"DIS","f");
-	wLegend->AddEntry(DpDhDelta_w,"DpDhDelta","f");
+	wLegend->AddEntry(DpDhDelta_w,"2p2hDelta","f");
 	wLegend->AddEntry(otherOOB_w,"otherOOB","f");
 	wLegend->Draw();
 	Canvas_w->Update();
@@ -761,7 +762,7 @@ void libValMCMethod::Loop()
 
 	//W2
 	TCanvas *Canvas_W2 = new TCanvas("Canvas_W2");
-	THStack *Stack_W2 = new THStack("Stack_W2","All (read: numu-cc atm) production methods Hadronic Invariant mass");
+	THStack *Stack_W2 = new THStack("Stack_W^{2}","Selected production methods Hadronic Invariant mass");
 	Stack_W2->Add(DpDhQES_W2);
 	Stack_W2->Add(QES_W2);
 	Stack_W2->Add(NSBrRes_W2);
@@ -772,18 +773,18 @@ void libValMCMethod::Loop()
 	Stack_W2->Add(DpDhDelta_W2);
 	Stack_W2->Add(otherOOB_W2);
 	Stack_W2->Draw("hist");
-	Stack_W2->GetXaxis()->SetTitle("Hadronic Invariant mass (W2)");
-	Stack_W2->GetYaxis()->SetTitle("Cross section at this W2");
+	Stack_W2->GetXaxis()->SetTitle("Hadronic Invariant mass (W^{2})");
+	Stack_W2->GetYaxis()->SetTitle("#sigma at this W^{2}");
 
-	TLegend *WLegend = new TLegend(0.5,0.7,0.9,0.9);
-	WLegend->AddEntry(DpDhQES_W2,"DpDhQES","f");
+	TLegend *WLegend = new TLegend(0.5,0.5,0.9,0.9);
+	WLegend->AddEntry(DpDhQES_W2,"2p2hQES","f");
 	WLegend->AddEntry(QES_W2,"QES","f");
 	WLegend->AddEntry(NSBrRes_W2,"NSBrRes","f");
 	WLegend->AddEntry(PiPBg_W2,"PiPBg","f");
 	WLegend->AddEntry(PiNBg_W2,"PiNBg","f");
-	WLegend->AddEntry(DpBg_W2,"DpBg","f");
+	WLegend->AddEntry(DpBg_W2,"2pBg","f");
 	WLegend->AddEntry(DIS_W2,"DIS","f");
-	WLegend->AddEntry(DpDhDelta_W2,"DpDhDelta","f");
+	WLegend->AddEntry(DpDhDelta_W2,"2p2hDelta","f");
 	WLegend->AddEntry(otherOOB_W2,"otherOOB","f");
 	WLegend->Draw();
 	Canvas_W2->Update();
@@ -809,7 +810,7 @@ void libValMCMethod::Loop()
 
 	//x
 	TCanvas *Canvas_x = new TCanvas("Canvas_x");
-	THStack *Stack_x = new THStack("Stack_x","All (read: numu-cc atm) production methods x bjorken scaling");
+	THStack *Stack_x = new THStack("Stack_x","Selected production methods x bjorken scaling");
 	Stack_x->Add(DpDhQES_x);
 	Stack_x->Add(QES_x);
 	Stack_x->Add(NSBrRes_x);
@@ -820,10 +821,10 @@ void libValMCMethod::Loop()
 	Stack_x->Add(DpDhDelta_x);
 	Stack_x->Add(otherOOB_x);
 	Stack_x->Draw("hist");
-	Stack_x->GetXaxis()->SetTitle("X Bjorken Scaling (x)");
-	Stack_x->GetYaxis()->SetTitle("Cross section at this x");
+	Stack_x->GetXaxis()->SetTitle("x-Bjorken Scaling (x)");
+	Stack_x->GetYaxis()->SetTitle("#sigma at this x-Bjorken Scaling");
 
-	TLegend *xLegend = new TLegend(0.5,0.7,0.9,0.9);
+	TLegend *xLegend = new TLegend(0.4,0.5,0.9,0.9);
 	xLegend->AddEntry(DpDhQES_x,"DpDhQES","f");
 	xLegend->AddEntry(QES_x,"QES","f");
 	xLegend->AddEntry(NSBrRes_x,"NSBrRes","f");
@@ -857,7 +858,7 @@ void libValMCMethod::Loop()
 
 	//y
 	TCanvas *Canvas_Y = new TCanvas("Canvas_y");
-	THStack *Stack_Y = new THStack("Stack_y","All (read: numu-cc atm) production methods relative energy transfer");
+	THStack *Stack_Y = new THStack("Stack_y","Selected production methods relative energy transfer");
 	Stack_Y->Add(DpDhQES_Y);
 	Stack_Y->Add(QES_Y);
 	Stack_Y->Add(NSBrRes_Y);
@@ -869,17 +870,17 @@ void libValMCMethod::Loop()
 	Stack_Y->Add(otherOOB_Y);
 	Stack_Y->Draw("hist");
 	Stack_Y->GetXaxis()->SetTitle("Relative Energy Transfer (y)");
-	Stack_Y->GetYaxis()->SetTitle("Cross section at this y");
+	Stack_Y->GetYaxis()->SetTitle("#sigma at this y");
 
-	TLegend *yLegend = new TLegend(0.5,0.7,0.9,0.9);
-	yLegend->AddEntry(DpDhQES_Y,"DpDhQES","f");
+	TLegend *yLegend = new TLegend(0.7,0.5,0.9,0.9);
+	yLegend->AddEntry(DpDhQES_Y,"2p2hQES","f");
 	yLegend->AddEntry(QES_Y,"QES","f");
 	yLegend->AddEntry(NSBrRes_Y,"NSBrRes","f");
 	yLegend->AddEntry(PiPBg_Y,"PiPBg","f");
 	yLegend->AddEntry(PiNBg_Y,"PiNBg","f");
-	yLegend->AddEntry(DpBg_Y,"DpBg","f");
+	yLegend->AddEntry(DpBg_Y,"2pBg","f");
 	yLegend->AddEntry(DIS_Y,"DIS","f");
-	yLegend->AddEntry(DpDhDelta_Y,"DpDhDelta","f");
+	yLegend->AddEntry(DpDhDelta_Y,"2p2hDelta","f");
 	yLegend->AddEntry(otherOOB_Y,"otherOOB","f");
 	yLegend->Draw();
 	Canvas_Y->Update();
@@ -903,33 +904,323 @@ void libValMCMethod::Loop()
 	blob.Close();
 	Canvas_Y->SaveAs("histResultsy.png");
 
-	//total histogram- displays entries by channel type
-	TCanvas *Canvas_Tot = new TCanvas("Canvas_Tot");
-	THStack *Stack_Tot = new THStack("Stack_Tot","All channel data for this interaction type.");
-	Stack_Tot->Add(Tot_Enu);
-	Stack_Tot->Add(Tot_Q);
-	Stack_Tot->Add(Tot_w);
-	Stack_Tot->Add(Tot_W2);
-	Stack_Tot->Add(Tot_x);
-	Stack_Tot->Add(Tot_Y);
-	Stack_Tot->Draw("hist");
-	Stack_Tot->GetXaxis()->SetTitle("Total channel production");
-	Stack_Tot->GetYaxis()->SetTitle("Cross section");
+	//total histogram ratios- displays entries by channel type
+	//enu
+	TH1D* QES_Enu_R = (TH1D*) QES_Enu->Clone();
+	QES_Enu_R->Divide(Tot_Enu);
+	TH1D* NSBrRes_Enu_R = (TH1D*) NSBrRes_Enu->Clone();
+	NSBrRes_Enu_R->Divide(Tot_Enu);
+	TH1D* PiNBg_Enu_R = (TH1D*) PiNBg_Enu->Clone();
+	PiNBg_Enu_R->Divide(Tot_Enu);
+	TH1D* PiPBg_Enu_R = (TH1D*) PiPBg_Enu->Clone();
+	PiPBg_Enu_R->Divide(Tot_Enu);
+	TH1D* DIS_Enu_R = (TH1D*) DIS_Enu->Clone();
+	DIS_Enu_R->Divide(Tot_Enu);
+	TH1D* DpDhQES_Enu_R = (TH1D*) DpDhQES_Enu->Clone();
+	DpDhQES_Enu_R->Divide(Tot_Enu);
+	TH1D* DpDhDelta_Enu_R = (TH1D*) DpDhDelta_Enu->Clone();
+	DpDhDelta_Enu_R->Divide(Tot_Enu);
+	TH1D* DpBg_Enu_R = (TH1D*) DpBg_Enu->Clone();
+	DpBg_Enu_R->Divide(Tot_Enu);
+	//Enu styling
+	QES_Enu_R->SetFillColor(kYellow);
+	NSBrRes_Enu_R->SetFillColor(kPink);
+	PiNBg_Enu_R->SetFillColor(kGreen);
+	PiPBg_Enu_R->SetFillColor(kRed);
+	DIS_Enu_R->SetFillColor(kBlue);
+	DpDhQES_Enu_R->SetFillColor(kMagenta);
+	DpDhDelta_Enu_R->SetFillColor(kOrange);
+	DpBg_Enu_R->SetFillColor(kTeal);
+	//Enu stack
+	TCanvas *Canvas_Enu_R = new TCanvas("Canvas_Enu_R");
+	THStack *Stack_Enu_R = new THStack("Stack_Enu_R","Ratio of channel-specific neutrino energies normalized to the total");
+	Stack_Enu_R->Add(DpDhQES_Enu_R);
+	Stack_Enu_R->Add(NSBrRes_Enu_R);
+	Stack_Enu_R->Add(QES_Enu_R);
+	Stack_Enu_R->Add(PiPBg_Enu_R);
+	Stack_Enu_R->Add(PiNBg_Enu_R);
+	Stack_Enu_R->Add(DpBg_Enu_R);
+	Stack_Enu_R->Add(DIS_Enu_R);
+	Stack_Enu_R->Add(DpDhDelta_Enu_R);
+	Stack_Enu_R->Draw("hist");
+	Stack_Enu_R->GetXaxis()->SetTitle("Neutrino Energy (E_{#nu})");
+	Stack_Enu_R->GetYaxis()->SetTitle("Ratio of #sigma at this Energy");
+	//legend
+	TLegend *EnuRLegend = new TLegend(0.7,0.5,0.9,0.9);
+	EnuRLegend->AddEntry(DpDhQES_Enu_R,"2p2hQES","f");
+	EnuRLegend->AddEntry(NSBrRes_Enu_R,"NSBrRes","f");
+	EnuRLegend->AddEntry(QES_Enu_R,"QES","f");
+	EnuRLegend->AddEntry(PiPBg_Enu_R,"PiPBg","f");
+	EnuRLegend->AddEntry(PiNBg_Enu_R,"PiNBg","f");
+	EnuRLegend->AddEntry(DpBg_Enu_R,"2pBg","f");
+	EnuRLegend->AddEntry(DIS_Enu_R,"DIS","f");
+	EnuRLegend->AddEntry(DpDhDelta_Enu_R,"2p2hDelta","f");
+	EnuRLegend->Draw();
 
-	TLegend *TotLegend = new TLegend(0.5,0.7,0.9,0.9);
-	TotLegend->AddEntry(Tot_Y,"Y","f");
-	TotLegend->AddEntry(Tot_Enu,"Enu","f");
-	TotLegend->AddEntry(Tot_Q,"Q","f");
-	TotLegend->AddEntry(Tot_w,"w","f");
-	TotLegend->AddEntry(Tot_x,"x","f");
-	TotLegend->AddEntry(Tot_W2,"W2","f");
-	TotLegend->Draw();
-	Canvas_Tot->Update();
+	//Q^2
+	TH1D* QES_Q_R = (TH1D*) QES_Q->Clone();
+	QES_Q_R->Divide(Tot_Q);
+	TH1D* NSBrRes_Q_R = (TH1D*) NSBrRes_Q->Clone();
+	NSBrRes_Q_R->Divide(Tot_Q);
+	TH1D* PiNBg_Q_R = (TH1D*) PiNBg_Q->Clone();
+	PiNBg_Q_R->Divide(Tot_Q);
+	TH1D* PiPBg_Q_R = (TH1D*) PiPBg_Q->Clone();
+	PiPBg_Q_R->Divide(Tot_Q);
+	TH1D* DIS_Q_R = (TH1D*) DIS_Q->Clone();
+	DIS_Q_R->Divide(Tot_Q);
+	TH1D* DpDhQES_Q_R = (TH1D*) DpDhQES_Q->Clone();
+	DpDhQES_Q_R->Divide(Tot_Q);
+	TH1D* DpDhDelta_Q_R = (TH1D*) DpDhDelta_Q->Clone();
+	DpDhDelta_Q_R->Divide(Tot_Q);
+	TH1D* DpBg_Q_R = (TH1D*) DpBg_Q->Clone();
+	DpBg_Q_R->Divide(Tot_Q);
+	//Q^2 styling
+	QES_Q_R->SetFillColor(kYellow);
+	NSBrRes_Q_R->SetFillColor(kPink);
+	PiNBg_Q_R->SetFillColor(kGreen);
+	PiPBg_Q_R->SetFillColor(kRed);
+	DIS_Q_R->SetFillColor(kBlue);
+	DpDhQES_Q_R->SetFillColor(kMagenta);
+	DpDhDelta_Q_R->SetFillColor(kOrange);
+	DpBg_Q_R->SetFillColor(kTeal);
+	//Q^2 stack
+	TCanvas *Canvas_Q_R = new TCanvas("Canvas_Q2_R");
+	THStack *Stack_Q_R = new THStack("Stack_Q2_R","Ratio of channel-specific 4-mom normalized to the total");
+	Stack_Q_R->Add(DpDhQES_Q_R);
+	Stack_Q_R->Add(NSBrRes_Q_R);
+	Stack_Q_R->Add(QES_Q_R);
+	Stack_Q_R->Add(PiPBg_Q_R);
+	Stack_Q_R->Add(PiNBg_Q_R);
+	Stack_Q_R->Add(DpBg_Q_R);
+	Stack_Q_R->Add(DIS_Q_R);
+	Stack_Q_R->Add(DpDhDelta_Q_R);
+	Stack_Q_R->Draw("hist");
+	Stack_Q_R->GetXaxis()->SetTitle("4-momentum Transfer (Q^{2})");
+	Stack_Q_R->GetYaxis()->SetTitle("Ratio of #sigma at this Q^{2}");
+	//legend
+	TLegend *QRLegend = new TLegend(0.7,0.5,0.9,0.9);
+	QRLegend->AddEntry(DpDhQES_Q_R,"2p2hQES","f");
+	QRLegend->AddEntry(NSBrRes_Q_R,"NSBrRes","f");
+	QRLegend->AddEntry(QES_Q_R,"QES","f");
+	QRLegend->AddEntry(PiPBg_Q_R,"PiPBg","f");
+	QRLegend->AddEntry(PiNBg_Q_R,"PiNBg","f");
+	QRLegend->AddEntry(DpBg_Q_R,"2pBg","f");
+	QRLegend->AddEntry(DIS_Q_R,"DIS","f");
+	QRLegend->AddEntry(DpDhDelta_Q_R,"2p2hDelta","f");
+	QRLegend->Draw();
 
-	TFile Totblob("TotalChannelProduction.root","RECREATE");
-	Stack_Tot->Write();
-	Totblob.Close();
-	Canvas_Tot->SaveAs("histResultsTot.png");
+	//w
+	TH1D* QES_W_R = (TH1D*) QES_w->Clone();
+	QES_W_R->Divide(Tot_w);
+	TH1D* NSBrRes_W_R = (TH1D*) NSBrRes_w->Clone();
+	NSBrRes_W_R->Divide(Tot_w);
+	TH1D* PiNBg_W_R = (TH1D*) PiNBg_w->Clone();
+	PiNBg_W_R->Divide(Tot_w);
+	TH1D* PiPBg_W_R = (TH1D*) PiPBg_w->Clone();
+	PiPBg_W_R->Divide(Tot_w);
+	TH1D* DIS_W_R = (TH1D*) DIS_w->Clone();
+	DIS_W_R->Divide(Tot_w);
+	TH1D* DpDhQES_W_R = (TH1D*) DpDhQES_w->Clone();
+	DpDhQES_W_R->Divide(Tot_w);
+	TH1D* DpDhDelta_W_R = (TH1D*) DpDhDelta_w->Clone();
+	DpDhDelta_W_R->Divide(Tot_w);
+	TH1D* DpBg_W_R = (TH1D*) DpBg_w->Clone();
+	DpBg_W_R->Divide(Tot_w);
+	//w styling
+	QES_W_R->SetFillColor(kYellow);
+	NSBrRes_W_R->SetFillColor(kPink);
+	PiNBg_W_R->SetFillColor(kGreen);
+	PiPBg_W_R->SetFillColor(kRed);
+	DIS_W_R->SetFillColor(kBlue);
+	DpDhQES_W_R->SetFillColor(kMagenta);
+	DpDhDelta_W_R->SetFillColor(kOrange);
+	DpBg_W_R->SetFillColor(kTeal);
+	//w stack
+	TCanvas *Canvas_W_R = new TCanvas("Canvas_w_R");
+	THStack *Stack_W_R = new THStack("Stack_w_R","Ratio of channel-specific energy transfer normalized to the total");
+	Stack_W_R->Add(DpDhQES_W_R);
+	Stack_W_R->Add(NSBrRes_W_R);
+	Stack_W_R->Add(QES_W_R);
+	Stack_W_R->Add(PiPBg_W_R);
+	Stack_W_R->Add(PiNBg_W_R);
+	Stack_W_R->Add(DpBg_W_R);
+	Stack_W_R->Add(DIS_W_R);
+	Stack_W_R->Add(DpDhDelta_W_R);
+	Stack_W_R->Draw("hist");
+	Stack_W_R->GetXaxis()->SetTitle("Energy Transfer (#omega)");
+	Stack_W_R->GetYaxis()->SetTitle("Ratio of #sigma at this #omega");
+	//legend
+	TLegend *WRLegend = new TLegend(0.7,0.5,0.9,0.9);
+	WRLegend->AddEntry(DpDhQES_W_R,"2p2hQES","f");
+	WRLegend->AddEntry(NSBrRes_W_R,"NSBrRes","f");
+	WRLegend->AddEntry(QES_W_R,"QES","f");
+	WRLegend->AddEntry(PiPBg_W_R,"PiPBg","f");
+	WRLegend->AddEntry(PiNBg_W_R,"PiNBg","f");
+	WRLegend->AddEntry(DpBg_W_R,"2pBg","f");
+	WRLegend->AddEntry(DIS_W_R,"DIS","f");
+	WRLegend->AddEntry(DpDhDelta_W_R,"2p2hDelta","f");
+	WRLegend->Draw();
+
+	//w2
+	TH1D* QES_W2_R = (TH1D*) QES_W2->Clone();
+	QES_W2_R->Divide(Tot_W2);
+	TH1D* NSBrRes_W2_R = (TH1D*) NSBrRes_W2->Clone();
+	NSBrRes_W2_R->Divide(Tot_W2);
+	TH1D* PiNBg_W2_R = (TH1D*) PiNBg_W2->Clone();
+	PiNBg_W2_R->Divide(Tot_W2);
+	TH1D* PiPBg_W2_R = (TH1D*) PiPBg_W2->Clone();
+	PiPBg_W2_R->Divide(Tot_W2);
+	TH1D* DIS_W2_R = (TH1D*) DIS_W2->Clone();
+	DIS_W2_R->Divide(Tot_W2);
+	TH1D* DpDhQES_W2_R = (TH1D*) DpDhQES_W2->Clone();
+	DpDhQES_W2_R->Divide(Tot_W2);
+	TH1D* DpDhDelta_W2_R = (TH1D*) DpDhDelta_W2->Clone();
+	DpDhDelta_W2_R->Divide(Tot_W2);
+	TH1D* DpBg_W2_R = (TH1D*) DpBg_W2->Clone();
+	DpBg_W2_R->Divide(Tot_W2);
+	//w2 styling
+	QES_W2_R->SetFillColor(kYellow);
+	NSBrRes_W2_R->SetFillColor(kPink);
+	PiNBg_W2_R->SetFillColor(kGreen);
+	PiPBg_W2_R->SetFillColor(kRed);
+	DIS_W2_R->SetFillColor(kBlue);
+	DpDhQES_W2_R->SetFillColor(kMagenta);
+	DpDhDelta_W2_R->SetFillColor(kOrange);
+	DpBg_W2_R->SetFillColor(kTeal);
+	//W2 stack
+	TCanvas *Canvas_W2_R = new TCanvas("Canvas_W2_R");
+	THStack *Stack_W2_R = new THStack("Stack_W2_R","Ratio of channel-specific hadronic invarient mass normalized to the total");
+	Stack_W2_R->Add(DpDhQES_W2_R);
+	Stack_W2_R->Add(NSBrRes_W2_R);
+	Stack_W2_R->Add(QES_W2_R);
+	Stack_W2_R->Add(PiPBg_W2_R);
+	Stack_W2_R->Add(PiNBg_W2_R);
+	Stack_W2_R->Add(DpBg_W2_R);
+	Stack_W2_R->Add(DIS_W2_R);
+	Stack_W2_R->Add(DpDhDelta_W2_R);
+	Stack_W2_R->Draw("hist");
+	Stack_W2_R->GetXaxis()->SetTitle("Hadronic invarient mass (#W^{2})");
+	Stack_W2_R->GetYaxis()->SetTitle("Ratio of #sigma at this #W^{2}");
+	//legend
+	TLegend *W2RLegend = new TLegend(0.7,0.5,0.9,0.9);
+	W2RLegend->AddEntry(DpDhQES_W2_R,"2p2hQES","f");
+	W2RLegend->AddEntry(NSBrRes_W2_R,"NSBrRes","f");
+	W2RLegend->AddEntry(QES_W2_R,"QES","f");
+	W2RLegend->AddEntry(PiPBg_W2_R,"PiPBg","f");
+	W2RLegend->AddEntry(PiNBg_W2_R,"PiNBg","f");
+	W2RLegend->AddEntry(DpBg_W2_R,"2pBg","f");
+	W2RLegend->AddEntry(DIS_W2_R,"DIS","f");
+	W2RLegend->AddEntry(DpDhDelta_W2_R,"2p2hDelta","f");
+	W2RLegend->Draw();
+
+	//X
+	TH1D* QES_X_R = (TH1D*) QES_x->Clone();
+	QES_X_R->Divide(Tot_x);
+	TH1D* NSBrRes_X_R = (TH1D*) NSBrRes_x->Clone();
+	NSBrRes_X_R->Divide(Tot_x);
+	TH1D* PiNBg_X_R = (TH1D*) PiNBg_x->Clone();
+	PiNBg_X_R->Divide(Tot_x);
+	TH1D* PiPBg_X_R = (TH1D*) PiPBg_x->Clone();
+	PiPBg_X_R->Divide(Tot_x);
+	TH1D* DIS_X_R = (TH1D*) DIS_x->Clone();
+	DIS_X_R->Divide(Tot_x);
+	TH1D* DpDhQES_X_R = (TH1D*) DpDhQES_x->Clone();
+	DpDhQES_X_R->Divide(Tot_x);
+	TH1D* DpDhDelta_X_R = (TH1D*) DpDhDelta_x->Clone();
+	DpDhDelta_X_R->Divide(Tot_x);
+	TH1D* DpBg_X_R = (TH1D*) DpBg_x->Clone();
+	DpBg_X_R->Divide(Tot_x);
+	//X styling
+	QES_X_R->SetFillColor(kYellow);
+	NSBrRes_X_R->SetFillColor(kPink);
+	PiNBg_X_R->SetFillColor(kGreen);
+	PiPBg_X_R->SetFillColor(kRed);
+	DIS_X_R->SetFillColor(kBlue);
+	DpDhQES_X_R->SetFillColor(kMagenta);
+	DpDhDelta_X_R->SetFillColor(kOrange);
+	DpBg_X_R->SetFillColor(kTeal);
+	//X stack
+	TCanvas *Canvas_X_R = new TCanvas("Canvas_XB_R");
+	THStack *Stack_X_R = new THStack("Stack_XB_R","Ratio of channel-specific X Bjorken scaling normalized to the total");
+	Stack_X_R->Add(DpDhQES_X_R);
+	Stack_X_R->Add(NSBrRes_X_R);
+	Stack_X_R->Add(QES_X_R);
+	Stack_X_R->Add(PiPBg_X_R);
+	Stack_X_R->Add(PiNBg_X_R);
+	Stack_X_R->Add(DpBg_X_R);
+	Stack_X_R->Add(DIS_X_R);
+	Stack_X_R->Add(DpDhDelta_X_R);
+	Stack_X_R->Draw("hist");
+	Stack_X_R->GetXaxis()->SetTitle("X Bjorken scaling (X)");
+	Stack_X_R->GetYaxis()->SetTitle("Ratio of #sigma at this X");
+	//legend
+	TLegend *XRLegend = new TLegend(0.7,0.5,0.9,0.9);
+	XRLegend->AddEntry(DpDhQES_X_R,"2p2hQES","f");
+	XRLegend->AddEntry(NSBrRes_X_R,"NSBrRes","f");
+	XRLegend->AddEntry(QES_X_R,"QES","f");
+	XRLegend->AddEntry(PiPBg_X_R,"PiPBg","f");
+	XRLegend->AddEntry(PiNBg_X_R,"PiNBg","f");
+	XRLegend->AddEntry(DpBg_X_R,"2pBg","f");
+	XRLegend->AddEntry(DIS_X_R,"DIS","f");
+	XRLegend->AddEntry(DpDhDelta_X_R,"2p2hDelta","f");
+	XRLegend->Draw();
+
+	//y
+	TH1D* QES_y_R = (TH1D*) QES_Y->Clone();
+	QES_y_R->Divide(Tot_y);
+	TH1D* NSBrRes_y_R = (TH1D*) NSBrRes_Y->Clone();
+	NSBrRes_y_R->Divide(Tot_y);
+	TH1D* PiNBg_y_R = (TH1D*) PiNBg_Y->Clone();
+	PiNBg_y_R->Divide(Tot_y);
+	TH1D* PiPBg_y_R = (TH1D*) PiPBg_Y->Clone();
+	PiPBg_y_R->Divide(Tot_y);
+	TH1D* DIS_y_R = (TH1D*) DIS_Y->Clone();
+	DIS_y_R->Divide(Tot_y);
+	TH1D* DpDhQES_y_R = (TH1D*) DpDhQES_Y->Clone();
+	DpDhQES_y_R->Divide(Tot_y);
+	TH1D* DpDhDelta_y_R = (TH1D*) DpDhDelta_Y->Clone();
+	DpDhDelta_y_R->Divide(Tot_y);
+	TH1D* DpBg_y_R = (TH1D*) DpBg_Y->Clone();
+	DpBg_y_R->Divide(Tot_y);
+	//Y styling
+	QES_y_R->SetFillColor(kYellow);
+	NSBrRes_y_R->SetFillColor(kPink);
+	PiNBg_y_R->SetFillColor(kGreen);
+	PiPBg_y_R->SetFillColor(kRed);
+	DIS_y_R->SetFillColor(kBlue);
+	DpDhQES_y_R->SetFillColor(kMagenta);
+	DpDhDelta_y_R->SetFillColor(kOrange);
+	DpBg_y_R->SetFillColor(kTeal);
+	//Y stack
+	TCanvas *Canvas_y_R = new TCanvas("Canvas_y_R");
+	THStack *Stack_y_R = new THStack("Stack_y_R","Ratio of channel-specific relative energy transfer normalized to the total");
+	Stack_y_R->Add(DpDhQES_y_R);
+	Stack_y_R->Add(NSBrRes_y_R);
+	Stack_y_R->Add(QES_y_R);
+	Stack_y_R->Add(PiPBg_y_R);
+	Stack_y_R->Add(PiNBg_y_R);
+	Stack_y_R->Add(DpBg_y_R);
+	Stack_y_R->Add(DIS_y_R);
+	Stack_y_R->Add(DpDhDelta_y_R);
+	Stack_y_R->Draw("hist");
+	Stack_y_R->GetXaxis()->SetTitle("Relative energy transfer (#gamma)");
+	Stack_y_R->GetYaxis()->SetTitle("Ratio of #sigma at this #gamma");
+	//legend
+	TLegend *yRLegend = new TLegend(0.7,0.5,0.9,0.9);
+	yRLegend->AddEntry(DpDhQES_y_R,"2p2hQES","f");
+	yRLegend->AddEntry(NSBrRes_y_R,"NSBrRes","f");
+	yRLegend->AddEntry(QES_y_R,"QES","f");
+	yRLegend->AddEntry(PiPBg_y_R,"PiPBg","f");
+	yRLegend->AddEntry(PiNBg_y_R,"PiNBg","f");
+	yRLegend->AddEntry(DpBg_y_R,"2pBg","f");
+	yRLegend->AddEntry(DIS_y_R,"DIS","f");
+	yRLegend->AddEntry(DpDhDelta_y_R,"2p2hDelta","f");
+	yRLegend->Draw();
+
+	TFile blobR("Ratios.root","RECREATE");
+	Stack_Enu_R->Write();
+	blobR.Close();
+	Canvas_Enu_R->SaveAs("histRatioResultsE.png");
 
 }
 
