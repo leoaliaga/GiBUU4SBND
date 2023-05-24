@@ -260,70 +260,70 @@ void libValMCMethod::Loop()
 
 	//set indidivual colors/styles
 	
-	QES_Enu->SetFillColor(kYellow);
+	QES_Enu->SetFillColor(kYellow+2);
 	NSBrRes_Enu->SetFillColor(kBlue);
 	PiNBg_Enu->SetFillColor(kGreen);
-	PiPBg_Enu->SetFillColor(kRed);
+	PiPBg_Enu->SetFillColor(kOrange-3);
 	DIS_Enu->SetFillColor(kPink);
 	DpDhQES_Enu->SetFillColor(kMagenta);
 	DpDhDelta_Enu->SetFillColor(kOrange);
 	DpBg_Enu->SetFillColor(kTeal);
 	otherOOB_Enu->SetFillColor(kBlack);
 
-	QES_Q->SetFillColor(kYellow);
+	QES_Q->SetFillColor(kYellow+2);
 	NSBrRes_Q->SetFillColor(kBlue);
 	PiNBg_Q->SetFillColor(kGreen);
-	PiPBg_Q->SetFillColor(kRed);
+	PiPBg_Q->SetFillColor(kOrange-3);
 	DIS_Q->SetFillColor(kPink);
 	DpDhQES_Q->SetFillColor(kMagenta);
 	DpDhDelta_Q->SetFillColor(kOrange);
 	DpBg_Q->SetFillColor(kTeal);
 	otherOOB_Q->SetFillColor(kBlack);
 
-	QES_w->SetFillColor(kYellow);
+	QES_w->SetFillColor(kYellow+2);
 	NSBrRes_w->SetFillColor(kBlue);
 	PiNBg_w->SetFillColor(kGreen);
-	PiPBg_w->SetFillColor(kRed);
+	PiPBg_w->SetFillColor(kOrange-3);
 	DIS_w->SetFillColor(kPink);
 	DpDhQES_w->SetFillColor(kMagenta);
 	DpDhDelta_w->SetFillColor(kOrange);
 	DpBg_w->SetFillColor(kTeal);
 	otherOOB_w->SetFillColor(kBlack);
 
-	QES_W2->SetFillColor(kYellow);
+	QES_W2->SetFillColor(kYellow+2);
 	NSBrRes_W2->SetFillColor(kBlue);
 	PiNBg_W2->SetFillColor(kGreen);
-	PiPBg_W2->SetFillColor(kRed);
+	PiPBg_W2->SetFillColor(kOrange-3);
 	DIS_W2->SetFillColor(kPink);
 	DpDhQES_W2->SetFillColor(kMagenta);
 	DpDhDelta_W2->SetFillColor(kOrange);
 	DpBg_W2->SetFillColor(kTeal);
 	otherOOB_W2->SetFillColor(kBlack);
 
-	QES_x->SetFillColor(kYellow);
+	QES_x->SetFillColor(kYellow+2);
 	NSBrRes_x->SetFillColor(kBlue);
 	PiNBg_x->SetFillColor(kGreen);
-	PiPBg_x->SetFillColor(kRed);
+	PiPBg_x->SetFillColor(kOrange-3);
 	DIS_x->SetFillColor(kPink);
 	DpDhQES_x->SetFillColor(kMagenta);
 	DpDhDelta_x->SetFillColor(kOrange);
 	DpBg_x->SetFillColor(kTeal);
 	otherOOB_x->SetFillColor(kBlack);
 
-	QES_Y->SetFillColor(kYellow);
+	QES_Y->SetFillColor(kYellow+2);
 	NSBrRes_Y->SetFillColor(kBlue);
 	PiNBg_Y->SetFillColor(kGreen);
-	PiPBg_Y->SetFillColor(kRed);
+	PiPBg_Y->SetFillColor(kOrange-3);
 	DIS_Y->SetFillColor(kPink);
 	DpDhQES_Y->SetFillColor(kMagenta);
 	DpDhDelta_Y->SetFillColor(kOrange);
 	DpBg_Y->SetFillColor(kTeal);
 	otherOOB_Y->SetFillColor(kBlack);
 
-	Tot_y->SetFillColor(kYellow);
+	Tot_y->SetFillColor(kYellow+2);
 	Tot_x->SetFillColor(kBlue);
 	Tot_W2->SetFillColor(kGreen);
-	Tot_w->SetFillColor(kRed);
+	Tot_w->SetFillColor(kOrange-3);
 	Tot_Q->SetFillColor(kPink);
 	Tot_Enu->SetFillColor(kMagenta);
 
@@ -620,21 +620,21 @@ void libValMCMethod::Loop()
 	Stack_Enu->Add(DpBg_Enu);
 	Stack_Enu->Add(DIS_Enu);
 	Stack_Enu->Add(DpDhDelta_Enu);
-	Stack_Enu->Add(otherOOB_Enu);
+	//Stack_Enu->Add(otherOOB_Enu);
 	Stack_Enu->Draw("hist");
-	Stack_Enu->GetXaxis()->SetTitle("Neutrino Energy (E_{#nu})");
-	Stack_Enu->GetYaxis()->SetTitle("#sigma at this Energy");
+	Stack_Enu->GetXaxis()->SetTitle("E_{#nu} (GeV)");
+	Stack_Enu->GetYaxis()->SetTitle("#sigma E^{-38}cm^{2}/nucleon");
 
 	TLegend *EnuLegend = new TLegend(0.6,0.5,0.9,0.9);
-	EnuLegend->AddEntry(DpDhQES_Enu,"2p2hQES","f");
+	EnuLegend->AddEntry(DpDhQES_Enu,"2p2hQE","f");
 	EnuLegend->AddEntry(QES_Enu,"QES","f");
-	EnuLegend->AddEntry(NSBrRes_Enu,"NSBrRes","f");
-	EnuLegend->AddEntry(PiPBg_Enu,"PiPBg","f");
-	EnuLegend->AddEntry(PiNBg_Enu,"PiNBg","f");
-	EnuLegend->AddEntry(DpBg_Enu,"2pBg","f");
+	EnuLegend->AddEntry(NSBrRes_Enu,"Res","f");
+	EnuLegend->AddEntry(PiPBg_Enu,"PiPBkg","f");
+	EnuLegend->AddEntry(PiNBg_Enu,"PiNBkg","f");
+	EnuLegend->AddEntry(DpBg_Enu,"2pBkg","f");
 	EnuLegend->AddEntry(DIS_Enu,"DIS","f");
 	EnuLegend->AddEntry(DpDhDelta_Enu,"2p2hDelta","f");
-	EnuLegend->AddEntry(otherOOB_Enu,"otherOOB","f");
+	//EnuLegend->AddEntry(otherOOB_Enu,"otherOOB","f");
 	EnuLegend->Draw();
 	Canvas_Enu->Update();
 
@@ -672,21 +672,21 @@ void libValMCMethod::Loop()
 	Stack_Q->Add(DpBg_Q);
 	Stack_Q->Add(DIS_Q);
 	Stack_Q->Add(DpDhDelta_Q);
-	Stack_Q->Add(otherOOB_Q);
+	//Stack_Q->Add(otherOOB_Q);
 	Stack_Q->Draw("hist");
-	Stack_Q->GetXaxis()->SetTitle("4 momentum transfer (Q^{2})");
-	Stack_Q->GetYaxis()->SetTitle("#sigma at this Q^{2}");
+	Stack_Q->GetXaxis()->SetTitle("Q^{2} (GeV)");
+	Stack_Q->GetYaxis()->SetTitle("#sigma E^{-38}cm^{2}/nucleon");
 
 	TLegend *Q2Legend = new TLegend(0.3,0.5,0.9,0.9);
-	Q2Legend->AddEntry(DpDhQES_Q,"2p2hQES","f");
+	Q2Legend->AddEntry(DpDhQES_Q,"2p2hQE","f");
 	Q2Legend->AddEntry(QES_Q,"QES","f");
-	Q2Legend->AddEntry(NSBrRes_Q,"NSBrRes","f");
-	Q2Legend->AddEntry(PiPBg_Q,"PiPBg","f");
-	Q2Legend->AddEntry(PiNBg_Q,"PiNBg","f");
-	Q2Legend->AddEntry(DpBg_Q,"2pBg","f");
+	Q2Legend->AddEntry(NSBrRes_Q,"Res","f");
+	Q2Legend->AddEntry(PiPBg_Q,"PiPBkg","f");
+	Q2Legend->AddEntry(PiNBg_Q,"PiNBkg","f");
+	Q2Legend->AddEntry(DpBg_Q,"2pBkg","f");
 	Q2Legend->AddEntry(DIS_Q,"DIS","f");
 	Q2Legend->AddEntry(DpDhDelta_Q,"2p2hDelta","f");
-	Q2Legend->AddEntry(otherOOB_Q,"otherOOB","f");
+	//Q2Legend->AddEntry(otherOOB_Q,"otherOOB","f");
 	Q2Legend->Draw();
 	Canvas_Q->Update();
 	
@@ -723,21 +723,21 @@ void libValMCMethod::Loop()
 	Stack_w->Add(DpBg_w);
 	Stack_w->Add(DIS_w);
 	Stack_w->Add(DpDhDelta_w);
-	Stack_w->Add(otherOOB_w);
+	//Stack_w->Add(otherOOB_w);
 	Stack_w->Draw("hist");
-	Stack_w->GetXaxis()->SetTitle("Energy transfer (#omega)");
-	Stack_w->GetYaxis()->SetTitle("#sigma at this #omega");
+	Stack_w->GetXaxis()->SetTitle("#omega (GeV)");
+	Stack_w->GetYaxis()->SetTitle("#sigma E^{-38}cm^{2}/nucleon");
 
 	TLegend *wLegend = new TLegend(0.3,0.5,0.9,0.9);
-	wLegend->AddEntry(DpDhQES_w,"2p2hQES","f");
+	wLegend->AddEntry(DpDhQES_w,"2p2hQE","f");
 	wLegend->AddEntry(QES_w,"QES","f");
-	wLegend->AddEntry(NSBrRes_w,"NSBrRes","f");
-	wLegend->AddEntry(PiPBg_w,"PiPBg","f");
-	wLegend->AddEntry(PiNBg_w,"PiNBg","f");
-	wLegend->AddEntry(DpBg_w,"2pBg","f");
+	wLegend->AddEntry(NSBrRes_w,"Res","f");
+	wLegend->AddEntry(PiPBg_w,"PiPBkg","f");
+	wLegend->AddEntry(PiNBg_w,"PiNBkg","f");
+	wLegend->AddEntry(DpBg_w,"2pBkg","f");
 	wLegend->AddEntry(DIS_w,"DIS","f");
 	wLegend->AddEntry(DpDhDelta_w,"2p2hDelta","f");
-	wLegend->AddEntry(otherOOB_w,"otherOOB","f");
+	//wLegend->AddEntry(otherOOB_w,"otherOOB","f");
 	wLegend->Draw();
 	Canvas_w->Update();
 
@@ -771,21 +771,21 @@ void libValMCMethod::Loop()
 	Stack_W2->Add(DpBg_W2);
 	Stack_W2->Add(DIS_W2);
 	Stack_W2->Add(DpDhDelta_W2);
-	Stack_W2->Add(otherOOB_W2);
+	//Stack_W2->Add(otherOOB_W2);
 	Stack_W2->Draw("hist");
-	Stack_W2->GetXaxis()->SetTitle("Hadronic Invariant mass (W^{2})");
-	Stack_W2->GetYaxis()->SetTitle("#sigma at this W^{2}");
+	Stack_W2->GetXaxis()->SetTitle("W^{2} (GeV^{2})");
+	Stack_W2->GetYaxis()->SetTitle("#sigma E^{-38}cm^{2}/nucleon");
 
 	TLegend *WLegend = new TLegend(0.5,0.5,0.9,0.9);
-	WLegend->AddEntry(DpDhQES_W2,"2p2hQES","f");
+	WLegend->AddEntry(DpDhQES_W2,"2p2hQE","f");
 	WLegend->AddEntry(QES_W2,"QES","f");
-	WLegend->AddEntry(NSBrRes_W2,"NSBrRes","f");
-	WLegend->AddEntry(PiPBg_W2,"PiPBg","f");
-	WLegend->AddEntry(PiNBg_W2,"PiNBg","f");
-	WLegend->AddEntry(DpBg_W2,"2pBg","f");
+	WLegend->AddEntry(NSBrRes_W2,"Res","f");
+	WLegend->AddEntry(PiPBg_W2,"PiPBkg","f");
+	WLegend->AddEntry(PiNBg_W2,"PiNBkg","f");
+	WLegend->AddEntry(DpBg_W2,"2pBkg","f");
 	WLegend->AddEntry(DIS_W2,"DIS","f");
 	WLegend->AddEntry(DpDhDelta_W2,"2p2hDelta","f");
-	WLegend->AddEntry(otherOOB_W2,"otherOOB","f");
+	//WLegend->AddEntry(otherOOB_W2,"otherOOB","f");
 	WLegend->Draw();
 	Canvas_W2->Update();
 
@@ -819,21 +819,21 @@ void libValMCMethod::Loop()
 	Stack_x->Add(DpBg_x);
 	Stack_x->Add(DIS_x);
 	Stack_x->Add(DpDhDelta_x);
-	Stack_x->Add(otherOOB_x);
+	//Stack_x->Add(otherOOB_x);
 	Stack_x->Draw("hist");
-	Stack_x->GetXaxis()->SetTitle("x-Bjorken Scaling (x)");
-	Stack_x->GetYaxis()->SetTitle("#sigma at this x-Bjorken Scaling");
+	Stack_x->GetXaxis()->SetTitle("X_{B}");
+	Stack_x->GetYaxis()->SetTitle("#sigma E^{-38}cm^{2}/nucleon");
 
 	TLegend *xLegend = new TLegend(0.4,0.5,0.9,0.9);
-	xLegend->AddEntry(DpDhQES_x,"DpDhQES","f");
+	xLegend->AddEntry(DpDhQES_x,"DpDhQE","f");
 	xLegend->AddEntry(QES_x,"QES","f");
-	xLegend->AddEntry(NSBrRes_x,"NSBrRes","f");
-	xLegend->AddEntry(PiPBg_x,"PiPBg","f");
-	xLegend->AddEntry(PiNBg_x,"PiNBg","f");
-	xLegend->AddEntry(DpBg_x,"DpBg","f");
+	xLegend->AddEntry(NSBrRes_x,"Res","f");
+	xLegend->AddEntry(PiPBg_x,"PiPBkg","f");
+	xLegend->AddEntry(PiNBg_x,"PiNBkg","f");
+	xLegend->AddEntry(DpBg_x,"DpBkg","f");
 	xLegend->AddEntry(DIS_x,"DIS","f");
 	xLegend->AddEntry(DpDhDelta_x,"DpDhDelta","f");
-	xLegend->AddEntry(otherOOB_x,"otherOOB","f");
+	//xLegend->AddEntry(otherOOB_x,"otherOOB","f");
 	xLegend->Draw();
 	Canvas_x->Update();
 
@@ -867,21 +867,21 @@ void libValMCMethod::Loop()
 	Stack_Y->Add(DpBg_Y);
 	Stack_Y->Add(DIS_Y);
 	Stack_Y->Add(DpDhDelta_Y);
-	Stack_Y->Add(otherOOB_Y);
+	//Stack_Y->Add(otherOOB_Y);
 	Stack_Y->Draw("hist");
-	Stack_Y->GetXaxis()->SetTitle("Relative Energy Transfer (y)");
-	Stack_Y->GetYaxis()->SetTitle("#sigma at this y");
+	Stack_Y->GetXaxis()->SetTitle("Relative Energy Transfer (GeV)");
+	Stack_Y->GetYaxis()->SetTitle("#sigma E^{-38}cm^{2}/nucleon");
 
 	TLegend *yLegend = new TLegend(0.7,0.5,0.9,0.9);
-	yLegend->AddEntry(DpDhQES_Y,"2p2hQES","f");
+	yLegend->AddEntry(DpDhQES_Y,"2p2hQE","f");
 	yLegend->AddEntry(QES_Y,"QES","f");
-	yLegend->AddEntry(NSBrRes_Y,"NSBrRes","f");
-	yLegend->AddEntry(PiPBg_Y,"PiPBg","f");
-	yLegend->AddEntry(PiNBg_Y,"PiNBg","f");
-	yLegend->AddEntry(DpBg_Y,"2pBg","f");
+	yLegend->AddEntry(NSBrRes_Y,"Res","f");
+	yLegend->AddEntry(PiPBg_Y,"PiPBkg","f");
+	yLegend->AddEntry(PiNBg_Y,"PiNBkg","f");
+	yLegend->AddEntry(DpBg_Y,"2pBkg","f");
 	yLegend->AddEntry(DIS_Y,"DIS","f");
 	yLegend->AddEntry(DpDhDelta_Y,"2p2hDelta","f");
-	yLegend->AddEntry(otherOOB_Y,"otherOOB","f");
+	//yLegend->AddEntry(otherOOB_Y,"otherOOB","f");
 	yLegend->Draw();
 	Canvas_Y->Update();
 
@@ -923,10 +923,10 @@ void libValMCMethod::Loop()
 	TH1D* DpBg_Enu_R = (TH1D*) DpBg_Enu->Clone();
 	DpBg_Enu_R->Divide(Tot_Enu);
 	//Enu styling
-	QES_Enu_R->SetFillColor(kYellow);
+	QES_Enu_R->SetFillColor(kYellow+2);
 	NSBrRes_Enu_R->SetFillColor(kPink);
 	PiNBg_Enu_R->SetFillColor(kGreen);
-	PiPBg_Enu_R->SetFillColor(kRed);
+	PiPBg_Enu_R->SetFillColor(kOrange-3);
 	DIS_Enu_R->SetFillColor(kBlue);
 	DpDhQES_Enu_R->SetFillColor(kMagenta);
 	DpDhDelta_Enu_R->SetFillColor(kOrange);
@@ -943,16 +943,16 @@ void libValMCMethod::Loop()
 	Stack_Enu_R->Add(DIS_Enu_R);
 	Stack_Enu_R->Add(DpDhDelta_Enu_R);
 	Stack_Enu_R->Draw("hist");
-	Stack_Enu_R->GetXaxis()->SetTitle("Neutrino Energy (E_{#nu})");
-	Stack_Enu_R->GetYaxis()->SetTitle("Ratio of #sigma at this Energy");
+	Stack_Enu_R->GetXaxis()->SetTitle("E_{#nu} (GeV)");
+	Stack_Enu_R->GetYaxis()->SetTitle("#sigma (E_{#nu}/#sigma_{Total})");
 	//legend
 	TLegend *EnuRLegend = new TLegend(0.7,0.5,0.9,0.9);
-	EnuRLegend->AddEntry(DpDhQES_Enu_R,"2p2hQES","f");
-	EnuRLegend->AddEntry(NSBrRes_Enu_R,"NSBrRes","f");
+	EnuRLegend->AddEntry(DpDhQES_Enu_R,"2p2hQE","f");
+	EnuRLegend->AddEntry(NSBrRes_Enu_R,"Res","f");
 	EnuRLegend->AddEntry(QES_Enu_R,"QES","f");
-	EnuRLegend->AddEntry(PiPBg_Enu_R,"PiPBg","f");
-	EnuRLegend->AddEntry(PiNBg_Enu_R,"PiNBg","f");
-	EnuRLegend->AddEntry(DpBg_Enu_R,"2pBg","f");
+	EnuRLegend->AddEntry(PiPBg_Enu_R,"PiPBkg","f");
+	EnuRLegend->AddEntry(PiNBg_Enu_R,"PiNBkg","f");
+	EnuRLegend->AddEntry(DpBg_Enu_R,"2pBkg","f");
 	EnuRLegend->AddEntry(DIS_Enu_R,"DIS","f");
 	EnuRLegend->AddEntry(DpDhDelta_Enu_R,"2p2hDelta","f");
 	EnuRLegend->Draw();
@@ -975,10 +975,10 @@ void libValMCMethod::Loop()
 	TH1D* DpBg_Q_R = (TH1D*) DpBg_Q->Clone();
 	DpBg_Q_R->Divide(Tot_Q);
 	//Q^2 styling
-	QES_Q_R->SetFillColor(kYellow);
+	QES_Q_R->SetFillColor(kYellow+2);
 	NSBrRes_Q_R->SetFillColor(kPink);
 	PiNBg_Q_R->SetFillColor(kGreen);
-	PiPBg_Q_R->SetFillColor(kRed);
+	PiPBg_Q_R->SetFillColor(kOrange-3);
 	DIS_Q_R->SetFillColor(kBlue);
 	DpDhQES_Q_R->SetFillColor(kMagenta);
 	DpDhDelta_Q_R->SetFillColor(kOrange);
@@ -995,16 +995,16 @@ void libValMCMethod::Loop()
 	Stack_Q_R->Add(DIS_Q_R);
 	Stack_Q_R->Add(DpDhDelta_Q_R);
 	Stack_Q_R->Draw("hist");
-	Stack_Q_R->GetXaxis()->SetTitle("4-momentum Transfer (Q^{2})");
-	Stack_Q_R->GetYaxis()->SetTitle("Ratio of #sigma at this Q^{2}");
+	Stack_Q_R->GetXaxis()->SetTitle("Q^{2} (GeV)");
+	Stack_Q_R->GetYaxis()->SetTitle("#sigma (Q^{2}/#sigma_{Total})");
 	//legend
 	TLegend *QRLegend = new TLegend(0.7,0.5,0.9,0.9);
-	QRLegend->AddEntry(DpDhQES_Q_R,"2p2hQES","f");
-	QRLegend->AddEntry(NSBrRes_Q_R,"NSBrRes","f");
+	QRLegend->AddEntry(DpDhQES_Q_R,"2p2hQE","f");
+	QRLegend->AddEntry(NSBrRes_Q_R,"Res","f");
 	QRLegend->AddEntry(QES_Q_R,"QES","f");
-	QRLegend->AddEntry(PiPBg_Q_R,"PiPBg","f");
-	QRLegend->AddEntry(PiNBg_Q_R,"PiNBg","f");
-	QRLegend->AddEntry(DpBg_Q_R,"2pBg","f");
+	QRLegend->AddEntry(PiPBg_Q_R,"PiPBkg","f");
+	QRLegend->AddEntry(PiNBg_Q_R,"PiNBkg","f");
+	QRLegend->AddEntry(DpBg_Q_R,"2pBkg","f");
 	QRLegend->AddEntry(DIS_Q_R,"DIS","f");
 	QRLegend->AddEntry(DpDhDelta_Q_R,"2p2hDelta","f");
 	QRLegend->Draw();
@@ -1027,10 +1027,10 @@ void libValMCMethod::Loop()
 	TH1D* DpBg_W_R = (TH1D*) DpBg_w->Clone();
 	DpBg_W_R->Divide(Tot_w);
 	//w styling
-	QES_W_R->SetFillColor(kYellow);
+	QES_W_R->SetFillColor(kYellow+2);
 	NSBrRes_W_R->SetFillColor(kPink);
 	PiNBg_W_R->SetFillColor(kGreen);
-	PiPBg_W_R->SetFillColor(kRed);
+	PiPBg_W_R->SetFillColor(kOrange-3);
 	DIS_W_R->SetFillColor(kBlue);
 	DpDhQES_W_R->SetFillColor(kMagenta);
 	DpDhDelta_W_R->SetFillColor(kOrange);
@@ -1047,16 +1047,16 @@ void libValMCMethod::Loop()
 	Stack_W_R->Add(DIS_W_R);
 	Stack_W_R->Add(DpDhDelta_W_R);
 	Stack_W_R->Draw("hist");
-	Stack_W_R->GetXaxis()->SetTitle("Energy Transfer (#omega)");
-	Stack_W_R->GetYaxis()->SetTitle("Ratio of #sigma at this #omega");
+	Stack_W_R->GetXaxis()->SetTitle("#omega (GeV)");
+	Stack_W_R->GetYaxis()->SetTitle("#sigma (#omega/#sigma_{Total})");
 	//legend
 	TLegend *WRLegend = new TLegend(0.7,0.5,0.9,0.9);
-	WRLegend->AddEntry(DpDhQES_W_R,"2p2hQES","f");
-	WRLegend->AddEntry(NSBrRes_W_R,"NSBrRes","f");
+	WRLegend->AddEntry(DpDhQES_W_R,"2p2hQE","f");
+	WRLegend->AddEntry(NSBrRes_W_R,"Res","f");
 	WRLegend->AddEntry(QES_W_R,"QES","f");
-	WRLegend->AddEntry(PiPBg_W_R,"PiPBg","f");
-	WRLegend->AddEntry(PiNBg_W_R,"PiNBg","f");
-	WRLegend->AddEntry(DpBg_W_R,"2pBg","f");
+	WRLegend->AddEntry(PiPBg_W_R,"PiPBkg","f");
+	WRLegend->AddEntry(PiNBg_W_R,"PiNBkg","f");
+	WRLegend->AddEntry(DpBg_W_R,"2pBkg","f");
 	WRLegend->AddEntry(DIS_W_R,"DIS","f");
 	WRLegend->AddEntry(DpDhDelta_W_R,"2p2hDelta","f");
 	WRLegend->Draw();
@@ -1079,10 +1079,10 @@ void libValMCMethod::Loop()
 	TH1D* DpBg_W2_R = (TH1D*) DpBg_W2->Clone();
 	DpBg_W2_R->Divide(Tot_W2);
 	//w2 styling
-	QES_W2_R->SetFillColor(kYellow);
+	QES_W2_R->SetFillColor(kYellow+2);
 	NSBrRes_W2_R->SetFillColor(kPink);
 	PiNBg_W2_R->SetFillColor(kGreen);
-	PiPBg_W2_R->SetFillColor(kRed);
+	PiPBg_W2_R->SetFillColor(kOrange-3);
 	DIS_W2_R->SetFillColor(kBlue);
 	DpDhQES_W2_R->SetFillColor(kMagenta);
 	DpDhDelta_W2_R->SetFillColor(kOrange);
@@ -1099,16 +1099,16 @@ void libValMCMethod::Loop()
 	Stack_W2_R->Add(DIS_W2_R);
 	Stack_W2_R->Add(DpDhDelta_W2_R);
 	Stack_W2_R->Draw("hist");
-	Stack_W2_R->GetXaxis()->SetTitle("Hadronic invarient mass (#W^{2})");
-	Stack_W2_R->GetYaxis()->SetTitle("Ratio of #sigma at this #W^{2}");
+	Stack_W2_R->GetXaxis()->SetTitle("#W^{2} (GeV^{2})");
+	Stack_W2_R->GetYaxis()->SetTitle("#sigma (#W^{2}/#sigma_{Total})");
 	//legend
 	TLegend *W2RLegend = new TLegend(0.7,0.5,0.9,0.9);
-	W2RLegend->AddEntry(DpDhQES_W2_R,"2p2hQES","f");
-	W2RLegend->AddEntry(NSBrRes_W2_R,"NSBrRes","f");
+	W2RLegend->AddEntry(DpDhQES_W2_R,"2p2hQE","f");
+	W2RLegend->AddEntry(NSBrRes_W2_R,"Res","f");
 	W2RLegend->AddEntry(QES_W2_R,"QES","f");
-	W2RLegend->AddEntry(PiPBg_W2_R,"PiPBg","f");
-	W2RLegend->AddEntry(PiNBg_W2_R,"PiNBg","f");
-	W2RLegend->AddEntry(DpBg_W2_R,"2pBg","f");
+	W2RLegend->AddEntry(PiPBg_W2_R,"PiPBkg","f");
+	W2RLegend->AddEntry(PiNBg_W2_R,"PiNBkg","f");
+	W2RLegend->AddEntry(DpBg_W2_R,"2pBkg","f");
 	W2RLegend->AddEntry(DIS_W2_R,"DIS","f");
 	W2RLegend->AddEntry(DpDhDelta_W2_R,"2p2hDelta","f");
 	W2RLegend->Draw();
@@ -1131,10 +1131,10 @@ void libValMCMethod::Loop()
 	TH1D* DpBg_X_R = (TH1D*) DpBg_x->Clone();
 	DpBg_X_R->Divide(Tot_x);
 	//X styling
-	QES_X_R->SetFillColor(kYellow);
+	QES_X_R->SetFillColor(kYellow+2);
 	NSBrRes_X_R->SetFillColor(kPink);
 	PiNBg_X_R->SetFillColor(kGreen);
-	PiPBg_X_R->SetFillColor(kRed);
+	PiPBg_X_R->SetFillColor(kOrange-3);
 	DIS_X_R->SetFillColor(kBlue);
 	DpDhQES_X_R->SetFillColor(kMagenta);
 	DpDhDelta_X_R->SetFillColor(kOrange);
@@ -1151,16 +1151,16 @@ void libValMCMethod::Loop()
 	Stack_X_R->Add(DIS_X_R);
 	Stack_X_R->Add(DpDhDelta_X_R);
 	Stack_X_R->Draw("hist");
-	Stack_X_R->GetXaxis()->SetTitle("X Bjorken scaling (X)");
-	Stack_X_R->GetYaxis()->SetTitle("Ratio of #sigma at this X");
+	Stack_X_R->GetXaxis()->SetTitle("X_{B}");
+	Stack_X_R->GetYaxis()->SetTitle("#sigma (X/#sigma_{Total})");
 	//legend
 	TLegend *XRLegend = new TLegend(0.7,0.5,0.9,0.9);
-	XRLegend->AddEntry(DpDhQES_X_R,"2p2hQES","f");
-	XRLegend->AddEntry(NSBrRes_X_R,"NSBrRes","f");
+	XRLegend->AddEntry(DpDhQES_X_R,"2p2hQE","f");
+	XRLegend->AddEntry(NSBrRes_X_R,"Res","f");
 	XRLegend->AddEntry(QES_X_R,"QES","f");
-	XRLegend->AddEntry(PiPBg_X_R,"PiPBg","f");
-	XRLegend->AddEntry(PiNBg_X_R,"PiNBg","f");
-	XRLegend->AddEntry(DpBg_X_R,"2pBg","f");
+	XRLegend->AddEntry(PiPBg_X_R,"PiPBkg","f");
+	XRLegend->AddEntry(PiNBg_X_R,"PiNBkg","f");
+	XRLegend->AddEntry(DpBg_X_R,"2pBkg","f");
 	XRLegend->AddEntry(DIS_X_R,"DIS","f");
 	XRLegend->AddEntry(DpDhDelta_X_R,"2p2hDelta","f");
 	XRLegend->Draw();
@@ -1183,10 +1183,10 @@ void libValMCMethod::Loop()
 	TH1D* DpBg_y_R = (TH1D*) DpBg_Y->Clone();
 	DpBg_y_R->Divide(Tot_y);
 	//Y styling
-	QES_y_R->SetFillColor(kYellow);
+	QES_y_R->SetFillColor(kYellow+2);
 	NSBrRes_y_R->SetFillColor(kPink);
 	PiNBg_y_R->SetFillColor(kGreen);
-	PiPBg_y_R->SetFillColor(kRed);
+	PiPBg_y_R->SetFillColor(kOrange-3);
 	DIS_y_R->SetFillColor(kBlue);
 	DpDhQES_y_R->SetFillColor(kMagenta);
 	DpDhDelta_y_R->SetFillColor(kOrange);
@@ -1203,24 +1203,34 @@ void libValMCMethod::Loop()
 	Stack_y_R->Add(DIS_y_R);
 	Stack_y_R->Add(DpDhDelta_y_R);
 	Stack_y_R->Draw("hist");
-	Stack_y_R->GetXaxis()->SetTitle("Relative energy transfer (#gamma)");
-	Stack_y_R->GetYaxis()->SetTitle("Ratio of #sigma at this #gamma");
+	Stack_y_R->GetXaxis()->SetTitle("Relative energy transfer (GeV)");
+	Stack_y_R->GetYaxis()->SetTitle("#sigma (#gamma/#sigma_{Total})");
 	//legend
 	TLegend *yRLegend = new TLegend(0.7,0.5,0.9,0.9);
-	yRLegend->AddEntry(DpDhQES_y_R,"2p2hQES","f");
-	yRLegend->AddEntry(NSBrRes_y_R,"NSBrRes","f");
+	yRLegend->AddEntry(DpDhQES_y_R,"2p2hQE","f");
+	yRLegend->AddEntry(NSBrRes_y_R,"Res","f");
 	yRLegend->AddEntry(QES_y_R,"QES","f");
-	yRLegend->AddEntry(PiPBg_y_R,"PiPBg","f");
-	yRLegend->AddEntry(PiNBg_y_R,"PiNBg","f");
-	yRLegend->AddEntry(DpBg_y_R,"2pBg","f");
+	yRLegend->AddEntry(PiPBg_y_R,"PiPBkg","f");
+	yRLegend->AddEntry(PiNBg_y_R,"PiNBkg","f");
+	yRLegend->AddEntry(DpBg_y_R,"2pBkg","f");
 	yRLegend->AddEntry(DIS_y_R,"DIS","f");
 	yRLegend->AddEntry(DpDhDelta_y_R,"2p2hDelta","f");
 	yRLegend->Draw();
 
 	TFile blobR("Ratios.root","RECREATE");
 	Stack_Enu_R->Write();
+	Stack_y_R->Write();
+	Stack_X_R->Write();
+	Stack_W2_R->Write();
+	Stack_W_R->Write();
+	Stack_Q_R->Write();
 	blobR.Close();
 	Canvas_Enu_R->SaveAs("histRatioResultsE.png");
+	Canvas_y_R->SaveAs("histRatioResultsy.png");
+	Canvas_X_R->SaveAs("histRatioResultsX.png");
+	Canvas_W2_R->SaveAs("histRatioResultsW2.png");
+	Canvas_W_R->SaveAs("histRatioResultsW.png");
+	Canvas_Q_R->SaveAs("histRatioResultsQ.png");
 
 }
 
